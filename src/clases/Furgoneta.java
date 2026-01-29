@@ -50,23 +50,41 @@ public class Furgoneta extends Vehiculo{
 	public void setnAsientos(int nAsientos) {
 		this.nAsientos = nAsientos;
 	}
-	//TOSTRING
-	@Override
-	public String toString() {
-		return "Furgoneta [mma=" + mma + ", puertasCorrederas=" + puertasCorrederas + ", nAsientos=" + nAsientos
-				+ ", toString()=" + super.toString() + "]";
-	}
 
 	@Override
 	public void visualizar() {
-		// TODO Auto-generated method stub
+		System.out.println("Matrícula del coche: "+matricula+"\n"
+						+ "Marca: "+marca+"\n"
+						+ "Modelo: "+modelo+"\n"
+						+ "Precio final: "+calcularPrecioFinal()+"\n"
+						+ "Estado: "+estado+"\n"
+						+ "Combustible: "+combustible+"\n"
+						+ "Color: "+color+"\n"
+						+ "Fecha de alta: "+fechaAlta+"\n"
+						+ "Masa Máxima Autorizada: "+mma+"\n"
+						+ "Tipo de puertas: "+tipoPuerta()+"\n"
+						+ "Número de asientos: "+nAsientos);
+	}
+	
+	public String tipoPuerta() {
+		String texto="";
 		
+		if (puertasCorrederas==false) {
+			texto="Convencionales";
+		} else {
+			texto="Correderas";
+		}
+		
+		return texto;
 	}
 
 	@Override
-	public void calcularPrecioFinal() {
-		// TODO Auto-generated method stub
+	public double calcularPrecioFinal() {
+		double precio=0;
 		
+		precio=precioBase+precioBase*0.21;
+		
+		return precio;
 	}
 
 }
