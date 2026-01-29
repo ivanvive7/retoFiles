@@ -9,6 +9,7 @@ public abstract class Vehiculo implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	//ATRIBUTOS
 	protected String matricula;
 	protected String marca;
@@ -18,6 +19,7 @@ public abstract class Vehiculo implements Serializable{
 	protected Combustible combustible;
 	protected String color;
 	protected LocalDate fechaAlta;
+	
 	//CONSTRUCTORES
 	public Vehiculo(String matricula, String marca, String modelo, double precioBase, Estado estado, Combustible combustible, String color, LocalDate fechaAlta) {
 		this.matricula = matricula;
@@ -104,6 +106,7 @@ public abstract class Vehiculo implements Serializable{
 	public void setFechaAlta(LocalDate fechaAlta) {
 		this.fechaAlta = fechaAlta;
 	}
+	
 	//TOSTRING
 	@Override
 	public String toString() {
@@ -111,6 +114,7 @@ public abstract class Vehiculo implements Serializable{
 				+ precioBase + ", estado=" + estado + ", combustible=" + combustible + ", color=" + color
 				+ ", fechaAlta=" + fechaAlta + "]";
 	}
+	
 	//MÉTODOS ABSTRACTO
 	public abstract void visualizar();
 	

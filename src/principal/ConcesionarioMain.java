@@ -1,9 +1,16 @@
 package principal;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
 
 import clases.*;
 import excepciones.*;
+import utilidades.MyObjectOutputStream;
 import utilidades.Utilidades;
 
 public class ConcesionarioMain {
@@ -26,6 +33,8 @@ public class ConcesionarioMain {
 		return opcion;
 	}
 	
+	
+	
 	public static void buscarMatricula(HashMap<String, Vehiculo> mapaVehiculos, String matricula) {
 		boolean encontrado=false;
 		
@@ -33,6 +42,9 @@ public class ConcesionarioMain {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+		File fichV = new File("vehiculo.dat");
+		
 		HashMap<String, Vehiculo> mapaVehiculos=new HashMap<String, Vehiculo>();
 		int opcion;
 		
