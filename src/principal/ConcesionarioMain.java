@@ -1,5 +1,9 @@
 package principal;
 
+import java.util.HashMap;
+
+import clases.*;
+import excepciones.*;
 import utilidades.Utilidades;
 
 public class ConcesionarioMain {
@@ -21,10 +25,15 @@ public class ConcesionarioMain {
 		opcion=Utilidades.leerInt(1,10);
 		return opcion;
 	}
+	
+	public static void buscarMatricula(HashMap<String, Vehiculo> mapaVehiculos, String matricula) {
+		boolean encontrado=false;
+		
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println();
+		HashMap<String, Vehiculo> mapaVehiculos=new HashMap<String, Vehiculo>();
 		int opcion;
 		
 		do {
