@@ -4,9 +4,7 @@ import java.time.LocalDate;
 
 public class Coche extends Vehiculo{
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	//ATRIBUTOS
 	private int nPuertas;
