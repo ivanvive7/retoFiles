@@ -21,9 +21,9 @@ public class ConcesionarioMain {
 		// TODO Auto-generated method stub
 
 		
-		File fichV = new File("vehiculo.dat");
-		
-		HashMap<String, Vehiculo> mapaVehiculos=new HashMap<String, Vehiculo>();
+		File fichV = new File("vehiculos.dat");
+		File fichC = new File("clientes.dat");
+		File fichT = new File("texto.dat");
 
 		int opcion;
 
