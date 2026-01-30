@@ -12,7 +12,7 @@ import clases.*;
 import utilidades.*;
 
 public class Case3 {
-	public static void ListarPorTipo(File fichV, HashMap<String, Vehiculo> mapaVehiculos) {
+	public static void ListarPorTipo(File fichV) {
 		
 		String tipo;
 		ObjectInputStream ois = null;
