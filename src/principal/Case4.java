@@ -7,7 +7,7 @@ public class Case4 {
 	
 	public static void modificarVehiculo() {
 		String opcion;
-		
+		System.out.println("Selecciona ");
 	}
 	
 }
