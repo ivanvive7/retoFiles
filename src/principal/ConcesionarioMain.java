@@ -1,6 +1,8 @@
 package principal;
 
+import java.io.EOFException;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,9 +23,9 @@ public class ConcesionarioMain {
 		// TODO Auto-generated method stub
 
 		
-		File fichV = new File("vehiculo.dat");
-		
-		HashMap<String, Vehiculo> mapaVehiculos=new HashMap<String, Vehiculo>();
+		File fichV = new File("vehiculos.dat");
+		File fichC = new File("clientes.dat");
+		File fichT = new File("texto.dat"); 
 
 		int opcion;
 
@@ -72,12 +74,64 @@ public class ConcesionarioMain {
 		return opcion;
 	}
 
-	public static boolean buscarMatricula(HashMap<String, Vehiculo> mapaVehiculos, String matricula) {
+	public static boolean buscarMatricula(File fichV, String matricula) {
 		boolean encontrado = false;
-		for (Vehiculo v : mapaVehiculos.values()) {
-			if (v.getMatricula().equalsIgnoreCase(matricula)) {
-				encontrado = true;
+		ObjectInputStream ois=null;
+		boolean finArchivo=false;
+		if(fichV.exists()) {
+			try {
+				ois=new ObjectInputStream(new FileInputStream(fichV));
+				while (!finArchivo) { 
+					try {
+						Vehiculo v=(Vehiculo) ois.readObject();
+						if(matricula.equals(v.getMatricula())) {
+							encontrado=true;
+						}
+					}catch(EOFException e) {
+						finArchivo=true;
+					}
+				}
+				ois.close();
+			}catch (FileNotFoundException e) {
+				System.out.println("No se encontró el fichero.");
+			}catch (ClassNotFoundException e) {
+				System.out.println("La clase Vehiculo no es válida.");
+			}catch (IOException e) {
+				System.out.println("Error leyendo el fichero.");
 			}
+		}else {
+			System.out.println("El fichero no existe.");
+		}
+		return encontrado;
+	}
+	
+	public static boolean buscarDni(File fichC, String dni) {
+		boolean encontrado = false;
+		ObjectInputStream ois=null;
+		boolean finArchivo=false;
+		if(fichC.exists()) {
+			try {
+				ois=new ObjectInputStream(new FileInputStream(fichC));
+				while (!finArchivo) {
+					try {
+						Cliente c=(Cliente) ois.readObject();
+						if(dni.equals(c.getDni())) {
+							encontrado=true;
+						}
+					}catch(EOFException e) {
+						finArchivo=true;
+					}
+				}
+				ois.close();
+			}catch (FileNotFoundException e) {
+				System.out.println("No se encontró el fichero.");
+			}catch (ClassNotFoundException e) {
+				System.out.println("La clase Cliente no es válida.");
+			}catch (IOException e) {
+				System.out.println("Error leyendo el fichero.");
+			}
+		}else {
+			System.out.println("El fichero no existe.");
 		}
 		return encontrado;
 	}
