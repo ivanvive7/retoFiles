@@ -32,6 +32,17 @@ public abstract class Vehiculo implements Serializable{
 		this.fechaAlta = fechaAlta;
 	}
 	
+	public Vehiculo(String matricula) {
+		this.matricula = matricula;
+		this.marca = "";
+		this.modelo = "";
+		this.precioBase = 0;
+		this.estado = null;
+		this.combustible = null;
+		this.color = "";
+		this.fechaAlta = LocalDate.now();
+	}
+	
 	public Vehiculo() {
 		this.matricula = "";
 		this.marca = "";
