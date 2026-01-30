@@ -39,7 +39,7 @@ public class ConcesionarioMain {
 	
 	public static boolean validarMatricula(String matricula) throws MatriculaException{
 		boolean valido=false;
-		if(Pattern.matches("^[0-9]{4}[ ]?[BCDFGHJKLMNPQRSTVWXYZ]{3}$", matricula)) {
+		if(Pattern.matches("^[0-9]{4}[ ]?[BCDFGHJKLMNPRSTVWXYZ]{3}$", matricula)) {
 			valido=true;
 		}else {
 			throw new MatriculaException("Error: el formato de la matrícula no es correcto."
@@ -57,6 +57,8 @@ public class ConcesionarioMain {
 		}
 		return valido;
 	}
+	
+	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -67,6 +69,7 @@ public class ConcesionarioMain {
 			opcion=menu();
 			switch(opcion) {
 			case 1:
+				
 				break;
 			case 2:
 				break;
