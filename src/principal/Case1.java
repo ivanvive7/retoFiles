@@ -22,6 +22,7 @@ public class Case1 {
 				oos = new ObjectOutputStream(new FileOutputStream(fichV));
 				
 				
+				
 			} catch (FileNotFoundException e) {
 				System.out.println("Error, fichero no encontrado, consulta la ruta especificada");
 			} catch (IOException e) {
