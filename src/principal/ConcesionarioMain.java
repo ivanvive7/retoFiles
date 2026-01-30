@@ -81,7 +81,7 @@ public class ConcesionarioMain {
 		if(fichV.exists()) {
 			try {
 				ois=new ObjectInputStream(new FileInputStream(fichV));
-				while (!finArchivo) {
+				while (!finArchivo) { 
 					try {
 						Vehiculo v=(Vehiculo) ois.readObject();
 						if(matricula.equals(v.getMatricula())) {
