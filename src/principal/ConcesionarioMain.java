@@ -58,18 +58,14 @@ public class ConcesionarioMain {
 		return valido;
 	}
 
-=======
->>>>>>> branch 'main' of https://github.com/ivanvive7/retoFiles
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-<<<<<<< HEAD
+
 		
 		File fichV = new File("vehiculo.dat");
 		
 		HashMap<String, Vehiculo> mapaVehiculos=new HashMap<String, Vehiculo>();
-=======
-		HashMap<String, Vehiculo> mapaVehiculos = new HashMap<String, Vehiculo>();
->>>>>>> branch 'main' of https://github.com/ivanvive7/retoFiles
+
 		int opcion;
 
 		do {
