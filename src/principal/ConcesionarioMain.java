@@ -63,7 +63,9 @@ public class ConcesionarioMain {
 				+ "\n5.  Eliminar un vehículo defectuoso."
 				+ "\n6.  Introducir clientes que van a reservar o comprar un vehículo."
 				+ "\n7.  Añadir una compra o reserva a un cliente ya registrado." + "\n8.  Mostrar clientes."
-				+ "\n9.  Buscar clientes." + "\n10. Salir." + "\nSeleccione una opción: ");
+				+ "\n9.  Buscar clientes." 
+				+ "\n10. Salir." 
+				+ "\nSelecciona una opción: ");
 		opcion = Utilidades.leerInt(1, 10);
 		return opcion;
 	}
