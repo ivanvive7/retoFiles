@@ -59,8 +59,11 @@ public class ConcesionarioMain {
 
 	public static int menu() {
 		int opcion;
-		System.out.println("--------------------------MENÚ--------------------------" + "\n1.  Introducir vehículos."
-				+ "\n2.  Listar vehículos." + "\n3.  Listar vehículos por tipo." + "\n4.  Modificar vehículo."
+		System.out.println("--------------------------MENÚ--------------------------" 
+				+ "\n1.  Introducir vehículos."
+				+ "\n2.  Listar vehículos."
+				+ "\n3.  Listar vehículos por tipo." 
+				+ "\n4.  Modificar vehículo."
 				+ "\n5.  Eliminar un vehículo defectuoso."
 				+ "\n6.  Introducir clientes que van a reservar o comprar un vehículo."
 				+ "\n7.  Añadir una compra o reserva a un cliente ya registrado." + "\n8.  Mostrar clientes."
