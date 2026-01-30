@@ -6,20 +6,29 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-
+import java.util.HashMap;
+import clases.Vehiculo;
+import excepciones.MatriculaException;
 import utilidades.MyObjectOutputStream;
+import utilidades.Utilidades;
 
 public class Case1 {
 	
-	public static void introducirVehiculo(File fichV) {
+	public static void introducirVehiculo(File fichV, HashMap<String, Vehiculo> mapaVehiculos) throws MatriculaException {
 		ObjectInputStream ois = null;
 		ObjectOutputStream oos = null;
 		MyObjectOutputStream moos = null;
-		boolean finArchivo = false;
+		boolean finArchivo = false, correcta = false;
+		String matricula;
 		
 		if (!fichV.exists()) {
 			try {
 				oos = new ObjectOutputStream(new FileOutputStream(fichV));
+				System.out.println("Creacion del fichero");
+				System.out.println("Introduce la matricula del vehiculo: ");
+				matricula = Utilidades.introducirCadena();
+				ConcesionarioMain.validarMatricula(matricula);
+				
 				
 				
 				
