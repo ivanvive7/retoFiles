@@ -9,7 +9,6 @@ import java.io.ObjectInputStream;
 
 import clases.*;
 
-
 public class Case8 {
 
 	public static void listarClientes(File fichC) {
