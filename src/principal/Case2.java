@@ -6,6 +6,8 @@ import clases.*;
 
 public class Case2 {
 
+	File fichV=new File("Vehiculos.dat");
+	
 	public static void listarVehiculos(File fichV) {
 		ObjectInputStream ois=null;
 		boolean finArchivo=false;
