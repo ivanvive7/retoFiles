@@ -1,20 +1,12 @@
 package principal;
 
-import java.io.EOFException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.HashMap;
 import java.util.regex.Pattern;
 
 import clases.*;
 import excepciones.*;
-import utilidades.MyObjectOutputStream;
-import utilidades.Utilidades;
+import utilidades.*;
 
 public class ConcesionarioMain {
 
