@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
 import clases.*;
 import excepciones.*;
@@ -33,11 +34,27 @@ public class ConcesionarioMain {
 		return opcion;
 	}
 	
+
 	
+	public static boolean validarMatricula(String matricula) throws MatriculaException{
+		boolean valido=false;
+		if(Pattern.matches("^[0-9]{4}[ ]?[BCDFGHJKLMNPQRSTVWXYZ]{3}$", matricula)) {
+			valido=true;
+		}else {
+			throw new MatriculaException("Error: el formato de la matrícula no es correcto."
+					+ "\nLa matrícula debe estar formada por cuatro números y tres letras (exluyendo vocales, Ñ y Q)");
+		}
+		return valido;
+	}
 	
-	public static void buscarMatricula(HashMap<String, Vehiculo> mapaVehiculos, String matricula) {
-		boolean encontrado=false;
-		
+	public static boolean validarDni(String dni) throws DniException {
+		boolean valido=false;
+		if(Pattern.matches("^[0-9]{8}[A-HJ-NP-TV-Z]$", dni)) {
+			valido=true;
+		}else {
+			throw new DniException("Error: el formato del DNI no es correcto");
+		}
+		return valido;
 	}
 
 	public static void main(String[] args) {
