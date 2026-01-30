@@ -102,8 +102,6 @@ public class ConcesionarioMain {
 			}catch (IOException e) {
 				System.out.println("Error leyendo el fichero.");
 			}
-		}else {
-			System.out.println("El fichero no existe.");
 		}
 		return encontrado;
 	}
@@ -133,8 +131,6 @@ public class ConcesionarioMain {
 			}catch (IOException e) {
 				System.out.println("Error leyendo el fichero.");
 			}
-		}else {
-			System.out.println("El fichero no existe.");
 		}
 		return encontrado;
 	}
