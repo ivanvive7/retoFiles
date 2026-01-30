@@ -1,20 +1,12 @@
 package principal;
 
-import java.io.EOFException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.HashMap;
 import java.util.regex.Pattern;
 
 import clases.*;
 import excepciones.*;
-import utilidades.MyObjectOutputStream;
-import utilidades.Utilidades;
+import utilidades.*;
 
 public class ConcesionarioMain {
 
@@ -73,7 +65,9 @@ public class ConcesionarioMain {
 				+ "\n5.  Eliminar un vehículo defectuoso."
 				+ "\n6.  Introducir clientes que van a reservar o comprar un vehículo."
 				+ "\n7.  Añadir una compra o reserva a un cliente ya registrado." + "\n8.  Mostrar clientes."
-				+ "\n9.  Buscar clientes." + "\n10. Salir." + "\nSeleccione una opción: ");
+				+ "\n9.  Buscar clientes." 
+				+ "\n10. Salir." 
+				+ "\nSelecciona una opción: ");
 		opcion = Utilidades.leerInt(1, 10);
 		return opcion;
 	}
@@ -103,8 +97,6 @@ public class ConcesionarioMain {
 			}catch (IOException e) {
 				System.out.println("Error leyendo el fichero.");
 			}
-		}else {
-			System.out.println("El fichero no existe.");
 		}
 		return encontrado;
 	}
@@ -134,8 +126,6 @@ public class ConcesionarioMain {
 			}catch (IOException e) {
 				System.out.println("Error leyendo el fichero.");
 			}
-		}else {
-			System.out.println("El fichero no existe.");
 		}
 		return encontrado;
 	}
