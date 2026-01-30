@@ -36,8 +36,10 @@ public class ConcesionarioMain {
 				
 				break;
 			case 2:
+				Case2.listarVehiculos(fichV);
 				break;
 			case 3:
+				Case3.ListarPorTipo(fichV);
 				break;
 			case 4:
 				break;
