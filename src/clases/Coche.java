@@ -47,23 +47,53 @@ public class Coche extends Vehiculo{
 	public void setDescapotable(boolean descapotable) {
 		this.descapotable = descapotable;
 	}
-	//TOSTRING
-	@Override
-	public String toString() {
-		return "Coche [nPuertas=" + nPuertas + ", automatico=" + automatico + ", descapotable=" + descapotable
-				+ ", toString()=" + super.toString() + "]";
-	}
 
 	@Override
 	public void visualizar() {
-		// TODO Auto-generated method stub
+		System.out.println("Matrícula del coche: "+matricula+"\n"
+						+ "Marca: "+marca+"\n"
+						+ "Modelo: "+modelo+"\n"
+						+ "Precio final: "+calcularPrecioFinal()+"\n"
+						+ "Estado: "+estado+"\n"
+						+ "Combustible: "+combustible+"\n"
+						+ "Color: "+color+"\n"
+						+ "Fecha de alta: "+fechaAlta+"\n"
+						+ "Número de puertas: "+nPuertas+"\n"
+						+ "Caja: "+automatico_Manual()+"\n"
+						+ "Techo: "+techo());
+	}
+	
+	public String automatico_Manual() {
+		String texto="";
 		
+		if (automatico==false) {
+			texto="Manual";
+		} else {
+			texto="Automático";
+		}
+		
+		return texto;
+	}
+	
+	public String techo() {
+		String texto="";
+		
+		if (descapotable==false) {
+			texto="Cerrado";
+		} else {
+			texto="Descapotable";
+		}
+		
+		return texto;
 	}
 
 	@Override
-	public void calcularPrecioFinal() {
-		// TODO Auto-generated method stub
+	public double calcularPrecioFinal() {
+		double precio=0;
 		
+		precio=precioBase+precioBase*0.21;
+		
+		return precio;
 	}
 	
 }

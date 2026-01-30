@@ -118,5 +118,5 @@ public abstract class Vehiculo implements Serializable{
 	//MÉTODOS ABSTRACTO
 	public abstract void visualizar();
 	
-	public abstract void calcularPrecioFinal();
+	public abstract double calcularPrecioFinal();
 }
