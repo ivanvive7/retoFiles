@@ -7,10 +7,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
-import clases.*;
+import clases.*; 
 
 public class Case8 {
-
+ 
 	public static void listarClientes(File fichC) {
 		ObjectInputStream ois=null;
 		boolean finArchivo=false;
