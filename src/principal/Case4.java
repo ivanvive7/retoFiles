@@ -23,7 +23,7 @@ public class Case4 {
 					+ "\n7. Color."
 					+ "\nSelecciona una opción: ");
 			opcion=Utilidades.leerInt(1,7);
-			
+			 
 			switch(opcion) {
 			case 1:
 				break;
