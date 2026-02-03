@@ -25,7 +25,7 @@ public class ConcesionarioMain {
 			opcion = menu();
 			switch (opcion) {
 			case 1:
-				Case1.introducirVehiculo(fichV);
+				//Case1.introducirVehiculo(fichV);
 				break;
 			case 2:
 				Case2.listarVehiculos(fichV);
@@ -150,6 +150,19 @@ public class ConcesionarioMain {
 		} else {
 			throw new DniException("Error: el formato del DNI no es correcto");
 		}
+		return valido;
+	}
+	
+	public static boolean validarTelf(String telf){
+		boolean valido = false;
+		do {
+			if (Pattern.matches("^(\\+34)?[ -]?[0-9]{3}[ -]?[0-9]{3}[ -]?[0-9]{3}$", telf)) {
+				valido = true;
+			} else {
+				System.out.println("Formato de teléfono invalido, inténtelo de nuevo");
+			}
+		} while (!valido);
+		
 		return valido;
 	}
 
