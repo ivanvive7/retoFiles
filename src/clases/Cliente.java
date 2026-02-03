@@ -14,10 +14,10 @@ public class Cliente implements Serializable{
 	private String dni;
 	private String nombre;
 	private String apellido;
-	private int telefono;
+	private String telefono;
 	private Map<String, Vehiculo> mapaVehiculos;
 	//CONSTRUCTORES
-	public Cliente(String dni, String nombre, String apellido, int telefono, Map<String, Vehiculo> mapaVehiculos) {
+	public Cliente(String dni, String nombre, String apellido, String telefono, Map<String, Vehiculo> mapaVehiculos) {
 		super();
 		this.dni = dni;
 		this.nombre = nombre;
@@ -31,7 +31,7 @@ public class Cliente implements Serializable{
 		this.dni = "";
 		this.nombre = "";
 		this.apellido = "";
-		this.telefono = 0;
+		this.telefono = "";
 		this.mapaVehiculos = new HashMap<String, Vehiculo>();
 	}
 	//GETTERS Y SETTERS
@@ -59,11 +59,11 @@ public class Cliente implements Serializable{
 		this.apellido = apellido;
 	}
 
-	public int getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(int telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 

@@ -153,7 +153,7 @@ public class ConcesionarioMain {
 		return valido;
 	}
 	
-	public static boolean validarTelf(String telf){
+	public static String validarTelf(String telf){
 		boolean valido = false;
 		do {
 			if (Pattern.matches("^(\\+34)?[ -]?[0-9]{3}[ -]?[0-9]{3}[ -]?[0-9]{3}$", telf)) {
@@ -163,7 +163,7 @@ public class ConcesionarioMain {
 			}
 		} while (!valido);
 		
-		return valido;
+		return telf;
 	}
 
 }
