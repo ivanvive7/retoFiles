@@ -66,7 +66,7 @@ public class Case1 {
 			}
 
 			System.out.println("Introduce el combustible del vehiculo (GASOLINA | DIESEL | HIBRIDO | ELECTRICO): ");
-
+  
 			while (!correctoCombustible) {
 				try {
 					respuestaCombustible = Utilidades.introducirCadena();

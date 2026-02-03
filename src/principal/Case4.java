@@ -14,7 +14,7 @@ import utilidades.Utilidades;
 public class Case4 {
 
 	File fichV=new File("vehiculos.dat");
-
+  
 	public static void modificarVehiculo(File fichV) throws MatriculaException {
 		File fichAux=new File("vehiculosAux.dat");
 		int opcion, combustible;
