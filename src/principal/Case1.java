@@ -117,7 +117,6 @@ public class Case1 {
 
 					correcto = true;
 
-
 					correctoSwitch  = true;
 
 
