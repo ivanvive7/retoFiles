@@ -25,7 +25,7 @@ public class ConcesionarioMain {
 			opcion = menu();
 			switch (opcion) {
 			case 1:
-				//Case1.introducirVehiculo(fichV);
+				Case1.introducirVehiculo(fichV);
 				break;
 			case 2:
 				Case2.listarVehiculos(fichV);
