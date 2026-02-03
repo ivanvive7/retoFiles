@@ -25,7 +25,7 @@ public class Case4 {
 	}
 	//este método hay que borrarlo cuando se meta el case al main
 
-	File fichV=new File("Vehiculos.dat");
+	File fichV=new File("vehiculos.dat");
 
 	public static void modificarVehiculo(File fichV) throws MatriculaException {
 		File fichAux=new File("vehiculosAux.dat");
