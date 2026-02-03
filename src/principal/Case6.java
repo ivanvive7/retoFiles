@@ -1,6 +1,9 @@
 package principal;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
@@ -31,8 +34,16 @@ public class Case6 {
 		} while (!valido);
 		existe=ConcesionarioMain.buscarDni(fichC, dni);
 		if (!existe) {
-			if (fichC.exists()) {
-				
+			if (!fichC.exists()) {
+				try {
+					oos = new ObjectOutputStream(new FileOutputStream(fichC));
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			} else {
 				
 			}
