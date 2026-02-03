@@ -14,7 +14,7 @@ import utilidades.Utilidades;
 public class Case4 {
 
 	File fichV=new File("vehiculos.dat");
-
+  
 	public static void modificarVehiculo(File fichV) throws MatriculaException {
 		File fichAux=new File("vehiculosAux.dat");
 		int opcion, combustible;
@@ -69,8 +69,7 @@ public class Case4 {
 									break;
 								case 4:
 									System.out.println("Introduce el nuevo precio base: ");
-									precioBase=Utilidades.leerDouble(0,999999999);
-									//que sea mayor que cero
+									precioBase=Utilidades.leerDouble(0, Integer.MAX_VALUE);
 									v.setPrecioBase(precioBase);
 									break;
 								case 5:

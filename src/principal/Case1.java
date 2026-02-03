@@ -113,12 +113,12 @@ public class Case1 {
 					Vehiculo c = new Coche(matricula, marca, modelo, precioBase, estado, combustible, color, fechaAlta, puertas, automatico, descapotable);
 					oos.writeObject(c);
 					oos.close();
-<<<<<<< HEAD
+
 					correcto = true;
-=======
+
 					correctoSwitch  = true;
 
->>>>>>> branch 'main' of https://github.com/ivanvive7/retoFiles
+
 					break;
 					
 					case "MOTO":
