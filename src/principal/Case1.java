@@ -13,6 +13,7 @@ import excepciones.MatriculaException;
 import utilidades.MyObjectOutputStream;
 import utilidades.Utilidades;
 
+
 public class Case1 {
 	
 	public static void introducirVehiculo(File fichV) throws MatriculaException, IOException {
