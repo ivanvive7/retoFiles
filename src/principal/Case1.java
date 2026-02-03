@@ -114,14 +114,15 @@ public class Case1 {
 					oos.writeObject(c);
 					oos.close();
 
+
 					correcto = true;
+
 
 					correctoSwitch  = true;
 
 
 					break;
-					
-					case "MOTO":
+				case "MOTO":
 					int cilindrada;
 					boolean deportiva;
 					System.out.println("Has elegido MOTO");
@@ -149,7 +150,6 @@ public class Case1 {
 					oos.close();
 					correctoSwitch  = true;
 					break;
-					
 				case "FURGONETA":
 					int mma;
 					boolean correderas;
