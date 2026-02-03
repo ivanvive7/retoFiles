@@ -2,7 +2,6 @@ package principal;
 
 import java.io.*;
 import java.time.LocalDate;
-
 import clases.*;
 import excepciones.MatriculaException;
 import utilidades.*;
@@ -13,13 +12,25 @@ public class Case1 {
 	public static void introducirVehiculo(File fichV) throws MatriculaException, IOException {
 		ObjectOutputStream oos = null;
 		MyObjectOutputStream moos = null;
-		boolean valida = false, correcto = false, correctoCombustible = false, correctoSwitch = false, correctoTipoMoto = false;
+		boolean valida = false, correctoEstado = false, correctoCombustible = false, correctoSwitch = false, correctoTipoMoto = false;
 		String matricula="", marca ="", modelo = "", respuestaEstado = "",respuestaCombustible = "", color = "", elegir = "", respuestaTipoMoto = "";
 		double precioBase = 0.0;
 		Estado estado = null;
 		Combustible combustible = null;
-		TipoMoto tipoMoto = null;
 		LocalDate fechaAlta = null;
+		
+		// Variables coche
+		int puertas;
+		boolean automatico, descapotable;
+		
+		// Variables moto
+		int cilindrada;
+		TipoMoto tipoMoto = null;
+		
+		// Vatiables furgoneta
+		int mma;
+		boolean correderas;
+		int asientos;
 
 		if (!fichV.exists()) {
 			try {
@@ -53,11 +64,11 @@ public class Case1 {
 			precioBase = Utilidades.leerDouble();
 			System.out.println("Introduce el estado del vehiculo (DISPONIBLE | RESERVADO | VENDIDO): ");
 
-			while (!correcto) {
+			while (!correctoEstado) {
 				try {
 					respuestaEstado = Utilidades.introducirCadena();
 					estado = Estado.valueOf(respuestaEstado.toUpperCase());
-					correcto = true;
+					correctoEstado = true;
 				} catch (IllegalArgumentException e) {
 					System.out.println("El valor \"" + respuestaEstado + "\" no es válido. Inténtalo de nuevo.");
 					System.out.println("Debe ser: DISPONIBLE, RESERVADO o VENDIDO");
@@ -91,8 +102,6 @@ public class Case1 {
 
 				switch (elegir.toUpperCase()) {
 				case "COCHE":
-					int puertas;
-					boolean automatico, descapotable;
 
 					System.out.println("Has elegido COCHE");
 
@@ -112,17 +121,10 @@ public class Case1 {
 					Vehiculo c = new Coche(matricula, marca, modelo, precioBase, estado, combustible, color, fechaAlta, puertas, automatico, descapotable);
 					oos.writeObject(c);
 					oos.close();
-
-
-					correcto = true;
-
-
 					correctoSwitch  = true;
-
 
 					break;
 				case "MOTO":
-					int cilindrada;
 					System.out.println("Has elegido MOTO");
 
 					System.out.println("Cilindrada:");
@@ -149,9 +151,6 @@ public class Case1 {
 					correctoSwitch  = true;
 					break;
 				case "FURGONETA":
-					int mma;
-					boolean correderas;
-					int asientos;
 
 					System.out.println("Has elegido FURGONETA");
 
@@ -204,11 +203,11 @@ public class Case1 {
 					precioBase = Utilidades.leerDouble();
 					System.out.println("Introduce el estado del vehiculo (DISPONIBLE | RESERVADO | VENDIDO): ");
 
-					while (!correcto) {
+					while (!correctoEstado) {
 						try {
 							respuestaEstado = Utilidades.introducirCadena();
 							estado = Estado.valueOf(respuestaEstado.toUpperCase());
-							correcto = true;
+							correctoEstado = true;
 						} catch (IllegalArgumentException e) {
 							System.out.println("El valor \"" + respuestaEstado + "\" no es válido. Inténtalo de nuevo.");
 							System.out.println("Debe ser: DISPONIBLE, RESERVADO o VENDIDO");
@@ -242,8 +241,6 @@ public class Case1 {
 
 						switch (elegir.toUpperCase()) {
 						case "COCHE":
-							int puertas;
-							boolean automatico, descapotable;
 
 							System.out.println("Has elegido COCHE");
 
@@ -267,7 +264,7 @@ public class Case1 {
 							break;
 							
 						case "MOTO":
-							int cilindrada;
+							
 							System.out.println("Has elegido MOTO");
 
 							System.out.println("Cilindrada:");
@@ -295,9 +292,6 @@ public class Case1 {
 							break;
 							
 						case "FURGONETA":
-							int mma;
-							boolean correderas;
-							int asientos;
 
 							System.out.println("Has elegido FURGONETA");
 
