@@ -11,10 +11,9 @@ import utilidades.*;
 public class Case1 {
 
 	public static void introducirVehiculo(File fichV) throws MatriculaException, IOException {
-		ObjectInputStream ois = null;
 		ObjectOutputStream oos = null;
 		MyObjectOutputStream moos = null;
-		boolean finArchivo = false, valida = false, correcto = false, correctoCombustible = false, correctoSwitch = false, correctoTipoMoto = false;
+		boolean valida = false, correcto = false, correctoCombustible = false, correctoSwitch = false, correctoTipoMoto = false;
 		String matricula="", marca ="", modelo = "", respuestaEstado = "",respuestaCombustible = "", color = "", elegir = "", respuestaTipoMoto = "";
 		double precioBase = 0.0;
 		Estado estado = null;
@@ -124,11 +123,10 @@ public class Case1 {
 					break;
 				case "MOTO":
 					int cilindrada;
-					boolean deportiva;
 					System.out.println("Has elegido MOTO");
 
 					System.out.println("Cilindrada:");
-					cilindrada = Utilidades.leerInt(1,Integer.MAX_VALUE);
+					cilindrada = Utilidades.leerInt(1,3000);
 
 					System.out.println("¿Que tipo de moto es? (NAKED, CUSTOM, MOTOCROSS, SPORT, TRAIL): ");
 					while (!correctoTipoMoto) {
@@ -158,7 +156,7 @@ public class Case1 {
 					System.out.println("Has elegido FURGONETA");
 
 					System.out.println("MMA:");
-					mma = Utilidades.leerInt(0,Integer.MAX_VALUE);
+					mma = Utilidades.leerInt(0,3500);
 
 					System.out.println("¿Tiene puertas correderas?");
 					correderas = Utilidades.introducirCadena("SI", "NO").equalsIgnoreCase("SI");
@@ -270,11 +268,10 @@ public class Case1 {
 							
 						case "MOTO":
 							int cilindrada;
-							boolean deportiva;
 							System.out.println("Has elegido MOTO");
 
 							System.out.println("Cilindrada:");
-							cilindrada = Utilidades.leerInt(1,Integer.MAX_VALUE);
+							cilindrada = Utilidades.leerInt(1,3000);
 
 							System.out.println("¿Que tipo de moto es? (NAKED, CUSTOM, MOTOCROSS, SPORT, TRAIL): ");
 							while (!correctoTipoMoto) {
@@ -311,7 +308,7 @@ public class Case1 {
 							correderas = Utilidades.introducirCadena("SI", "NO").equalsIgnoreCase("SI");
 
 							System.out.println("Número de asientos:");
-							asientos = Utilidades.leerInt(0,10);
+							asientos = Utilidades.leerInt(1,10);
 
 							System.out.println("Furgoneta creada con:");
 							System.out.println("MMA: " + mma);
