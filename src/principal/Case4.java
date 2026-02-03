@@ -8,15 +8,7 @@ public class Case4 {
 	File fichV=new File("Vehiculos.dat");
 	
 	public static void modificarVehiculo() {
-<<<<<<< HEAD
-		String opcion;
-		System.out.println("Selecciona el atributo: "
-				+ "\n1. Matrícula."
-				+ "\n2. Marca."
-				+ "\n3. Modelo."
-				+ "\n4. Precio base."
-				+ "");
-=======
+
 		int opcion;
 		String respuesta;
 		
@@ -52,6 +44,6 @@ public class Case4 {
 			System.out.println("¿Quieres modificar algo más?");
 			respuesta=Utilidades.introducirCadena("SI", "NO");
 		}while(respuesta.equalsIgnoreCase("Si"));
->>>>>>> branch 'main' of https://github.com/ivanvive7/retoFiles
+
 	}
 }
