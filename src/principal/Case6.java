@@ -17,7 +17,8 @@ public class Case6 {
 	File fichC = new File("clientes.dat");
 	
 	public void introducirCliente() {
-		String dni="";
+		String dni="", nom, ape;
+		int telf;
 		boolean existe, valido=false;
 		ObjectOutputStream oos;
 		MyObjectOutputStream moos;
@@ -37,18 +38,22 @@ public class Case6 {
 			if (!fichC.exists()) {
 				try {
 					oos = new ObjectOutputStream(new FileOutputStream(fichC));
+					System.out.println("Introduce el mombre del cliente:");
+					nom=Utilidades.introducirCadena();
+					System.out.println("Introduce el apellido del cliente:");
+					ape=Utilidades.introducirCadena();
+					System.out.println("Introduce el teléfono del cliente");
+					//HACER METODO PARA VALIDAR EL TELEFONO
 				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			        System.out.println("No se encontró el fichero");
+			    } catch (IOException e) {
+			        System.out.println("Error leyendo el fichero");
+			    }
 			} else {
 				
 			}
 		} else {
-			
+			System.out.println("El cliente ya está registrado.");
 		}
 		
 	}
