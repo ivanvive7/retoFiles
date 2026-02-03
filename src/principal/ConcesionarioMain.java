@@ -34,8 +34,10 @@ public class ConcesionarioMain {
 				Case3.ListarPorTipo(fichV);
 				break;
 			case 4:
+				Case4.modificarVehiculo(fichV);
 				break;
 			case 5:
+				
 				break;
 			case 6:
 				
@@ -148,6 +150,19 @@ public class ConcesionarioMain {
 		} else {
 			throw new DniException("Error: el formato del DNI no es correcto");
 		}
+		return valido;
+	}
+	
+	public static boolean validarTelf(String telf){
+		boolean valido = false;
+		do {
+			if (Pattern.matches("^(\\+34)?[ -]?[0-9]{3}[ -]?[0-9]{3}[ -]?[0-9]{3}$", telf)) {
+				valido = true;
+			} else {
+				System.out.println("Formato de teléfono invalido, inténtelo de nuevo");
+			}
+		} while (!valido);
+		
 		return valido;
 	}
 

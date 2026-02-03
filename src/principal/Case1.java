@@ -60,7 +60,7 @@ public class Case1 {
 			modelo = Utilidades.introducirCadena();
 			System.out.println("Introduce el precio base del vehiculo: ");
 			precioBase = Utilidades.leerDouble();
-			System.out.println("Introduce el estado del vehiculo (DISONIBLE | RESERVADO | VENDIDO): ");
+			System.out.println("Introduce el estado del vehiculo (DISPONIBLE | RESERVADO | VENDIDO): ");
 
 			while (!correcto) {
 				try {
@@ -96,7 +96,7 @@ public class Case1 {
 
 			System.out.println("Introduce el vehiculo que es (COCHE | MOTO | FURGONETA): ");
 			while (!correctoSwitch) {
-				elegir = Utilidades.introducirCadena();
+				elegir = Utilidades.introducirCadena("COCHE", "MOTO", "FURGONETA");
 
 				switch (elegir.toUpperCase()) {
 				case "COCHE":
