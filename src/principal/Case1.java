@@ -113,15 +113,10 @@ public class Case1 {
 					Vehiculo c = new Coche(matricula, marca, modelo, precioBase, estado, combustible, color, fechaAlta, puertas, automatico, descapotable);
 					oos.writeObject(c);
 					oos.close();
-<<<<<<< HEAD
-					correcto = true;
-=======
 					correctoSwitch  = true;
 
->>>>>>> branch 'main' of https://github.com/ivanvive7/retoFiles
 					break;
-					
-					case "MOTO":
+				case "MOTO":
 					int cilindrada;
 					boolean deportiva;
 					System.out.println("Has elegido MOTO");
@@ -149,7 +144,6 @@ public class Case1 {
 					oos.close();
 					correctoSwitch  = true;
 					break;
-					
 				case "FURGONETA":
 					int mma;
 					boolean correderas;
