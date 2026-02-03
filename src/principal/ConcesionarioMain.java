@@ -11,7 +11,7 @@ import utilidades.*;
 public class ConcesionarioMain {
 
 
-	public static void main(String[] args) throws MatriculaException {
+	public static void main(String[] args) throws MatriculaException, IOException {
 		// TODO Auto-generated method stub
 
 		
@@ -34,8 +34,10 @@ public class ConcesionarioMain {
 				Case3.ListarPorTipo(fichV);
 				break;
 			case 4:
+				Case4.modificarVehiculo(fichV);
 				break;
 			case 5:
+				
 				break;
 			case 6:
 				
