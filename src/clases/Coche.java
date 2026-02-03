@@ -17,12 +17,6 @@ public class Coche extends Vehiculo{
 		this.descapotable = descapotable;
 	}
 	
-	public Coche() {
-		super();
-		this.nPuertas = 0;
-		this.automatico = false;
-		this.descapotable = false;
-	}
 	//GETTERS Y SETTERS
 	public int getnPuertas() {
 		return nPuertas;
