@@ -19,7 +19,7 @@ import utilidades.Utilidades;
 public class ConcesionarioMain {
 
 
-	public static void main(String[] args) throws MatriculaException {
+	public static void main(String[] args) throws MatriculaException, IOException {
 		// TODO Auto-generated method stub
 
 		
