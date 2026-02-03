@@ -423,7 +423,7 @@ public class Case1 {
 						        System.out.println("Debe ser: GASOLINA, DIESEL, HIBRIDO o ELECTRICO");
 						    }
 						}
-
+					
 			    	    System.out.println("Moto creada con:");
 			    	    System.out.println("Cilindrada: " + cilindrada);
 			    	    System.out.println("Tipo: " + tipoMoto);
