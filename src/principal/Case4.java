@@ -12,18 +12,6 @@ import utilidades.Utilidades;
 
 
 public class Case4 {
-	
-	public static boolean validarMatricula(String matricula) throws MatriculaException {
-		boolean valido = false;
-		if (Pattern.matches("^[0-9]{4}[ ]?[BCDFGHJKLMNPQRSTVWXYZ]{3}$", matricula)) {
-			valido = true;
-		} else {
-			throw new MatriculaException("Error: el formato de la matrícula no es correcto."
-					+ "\nLa matrícula debe estar formada por cuatro números y tres letras (exluyendo vocales, Ñ y Q)");
-		}
-		return valido;
-	}
-	//este método hay que borrarlo cuando se meta el case al main
 
 	File fichV=new File("vehiculos.dat");
 
@@ -66,7 +54,7 @@ public class Case4 {
 									do {
 										System.out.println("Introduce la nueva matrícula: ");
 										matricula=Utilidades.introducirCadena();
-									}while(!validarMatricula(matricula));
+									}while(!ConcesionarioMain.validarMatricula(matricula));
 									v.setMatricula(matricula);
 									break;
 								case 2:
