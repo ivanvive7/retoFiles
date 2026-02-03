@@ -18,8 +18,8 @@ public class Case3 {
 		
 		System.out.println("¿Que tipo de vehiculo quieres mostrar?:" + " Moto - Coche - Furgoneta.");
 		tipo = Utilidades.introducirCadena("Moto", "Coche", "Furgoneta");
-		switch(tipo) {
-		case "Moto":
+		switch(tipo.toLowerCase()) {
+		case "moto":
 			if(fichV.exists()) {
 				try {
 					ois=new ObjectInputStream(new FileInputStream(fichV));
@@ -42,7 +42,7 @@ public class Case3 {
 				System.out.println("El fichero no existe.");
 			}
 			break;
-		case "Coche":
+		case "coche":
 			if(fichV.exists()) {
 				try {
 					ois=new ObjectInputStream(new FileInputStream(fichV));
@@ -65,7 +65,7 @@ public class Case3 {
 				System.out.println("El fichero no existe.");
 			}
 			break;
-		case "Furgoneta" :
+		case "furgoneta" :
 			if(fichV.exists()) {
 				try {
 					ois=new ObjectInputStream(new FileInputStream(fichV));
