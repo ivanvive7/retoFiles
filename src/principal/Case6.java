@@ -1,5 +1,6 @@
 package principal;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -8,6 +9,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import clases.Cliente;
+import clases.Estado;
+import clases.Vehiculo;
 import excepciones.DniException;
 import excepciones.MatriculaException;
 import utilidades.MyObjectOutputStream;
@@ -19,8 +23,11 @@ public class Case6 {
 	File fichV = new File("vehiculos.dat");
 	
 	public void introducirCliente() {
-		String dni="", nom, ape, telf, reservarComprar, matricula;
-		boolean existe, valido;
+		String dni="", nom, ape, telf, reservarComprar, matricula="";
+		boolean existe, valido, finArchivo=false, encontrado=false;
+		Vehiculo vehiculo = null;
+		Cliente cliente;
+		File fichAux = new File("vehiculosAuxiliar.dat");
 		ObjectOutputStream oos;
 		MyObjectOutputStream moos;
 		ObjectInputStream ois;
@@ -41,7 +48,7 @@ public class Case6 {
 				if (!fichC.exists()) {
 					try {
 						oos = new ObjectOutputStream(new FileOutputStream(fichC));
-						ois=new ObjectInputStream(new FileInputStream(fichV));
+						ois = new ObjectInputStream(new FileInputStream(fichV));
 						System.out.println("Introduce el mombre del cliente:");
 						nom=Utilidades.introducirCadena();
 						System.out.println("Introduce el apellido del cliente:");
@@ -51,19 +58,41 @@ public class Case6 {
 						telf=ConcesionarioMain.validarTelf(telf);
 						System.out.println("¿Qué va a hacer el cliente?");
 						reservarComprar=Utilidades.introducirCadena("RESERVAR", "COMPRAR");
-						System.out.println("Introduce la matrícula del vehículo:");
-						valido=false;
 						do {
-							try {
-								System.out.println("Introduce el DNI del nuevo cliente:");
-								matricula=Utilidades.introducirCadena();
-								valido=ConcesionarioMain.validarMatricula(matricula);
-							} catch (MatriculaException e) {
-								System.out.println(e.getMessage());
+							valido=false;
+							do {
+								try {
+									System.out.println("Introduce la matrícula del vehículo:");
+									matricula=Utilidades.introducirCadena();
+									valido=ConcesionarioMain.validarMatricula(matricula);
+								} catch (MatriculaException e) {
+									System.out.println(e.getMessage());
+								}
+							} while (!valido);
+							while (!finArchivo) { 
+								try {
+									Vehiculo v=(Vehiculo) ois.readObject();
+									if(matricula.equals(v.getMatricula())) {
+										vehiculo=v;
+										encontrado=true;
+									}
+								}catch(EOFException e) {
+									finArchivo=true;
+								} catch (ClassNotFoundException e) {
+									e.printStackTrace();
+								}
 							}
-						} while (!valido);
-						
+							if (!encontrado) {
+								System.out.println("No existe ningun vehículo con esa matrícula.");
+							}
+						} while (!encontrado);
 						if (reservarComprar.equalsIgnoreCase("RESERVAR")) {
+							vehiculo.setEstado(Estado.valueOf("RESERVADO"));
+							cliente = new Cliente(dni, nom, ape, telf);
+							cliente.getMapaVehiculos().put(matricula, vehiculo);
+							oos.writeObject(cliente);
+							oos.close();
+							oos = new ObjectOutputStream(new FileOutputStream(fichAux));
 							
 						} else {
 							

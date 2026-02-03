@@ -17,13 +17,13 @@ public class Cliente implements Serializable{
 	private String telefono;
 	private Map<String, Vehiculo> mapaVehiculos;
 	//CONSTRUCTORES
-	public Cliente(String dni, String nombre, String apellido, String telefono, Map<String, Vehiculo> mapaVehiculos) {
+	public Cliente(String dni, String nombre, String apellido, String telefono) {
 		super();
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.telefono = telefono;
-		this.mapaVehiculos = mapaVehiculos;
+		this.mapaVehiculos = new HashMap<String, Vehiculo>();
 	}
 
 	public Cliente() {
