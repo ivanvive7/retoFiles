@@ -13,8 +13,6 @@ import utilidades.Utilidades;
 
 public class Case4 {
 
-	File fichV=new File("vehiculos.dat");
-
 	public static void modificarVehiculo(File fichV) throws MatriculaException {
 		File fichAux=new File("vehiculosAux.dat");
 		int opcion, combustible;
@@ -52,6 +50,7 @@ public class Case4 {
 
 									switch(opcion) {
 									case 1:
+										//CONTROLAR QUE LA MATRICULA NO LA TENGA OTRO VEHICULO
 										do {
 											System.out.println("Introduce la nueva matrícula: ");
 											matricula=Utilidades.introducirCadena();
@@ -81,6 +80,7 @@ public class Case4 {
 												+ "\n4. Híbrido."
 												+ "\nSelecciona una opción: ");
 										combustible=Utilidades.leerInt(1,4);
+										//ESTO MEJPR CON EXCEPCIONES
 										if(combustible==1) {
 											v.setCombustible(Combustible.GASOLINA);
 										}else if(combustible==2) {
@@ -107,21 +107,22 @@ public class Case4 {
 									respuesta=Utilidades.introducirCadena("SI", "NO");
 								
 								}while(respuesta.equalsIgnoreCase("Si"));
+								oos.writeObject(v);
 							}
-							oos.writeObject(v);
 
 					}catch(EOFException e) {
 						finArchivo=true;
 					}
 				}
- 
+				
 				ois.close();
 				oos.close();
-
+				
 				if(encontrado) {
 					fichV.delete();
 					fichAux.renameTo(fichV);
 				}else {
+					fichAux.delete();
 					System.out.println("No hay ningún vehículo registrado con esa matrícula.");
 				}
 
