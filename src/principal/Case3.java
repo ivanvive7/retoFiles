@@ -25,7 +25,7 @@ public class Case3 {
 					ois=new ObjectInputStream(new FileInputStream(fichV));
 					while(!finArchivo) {
 						try {
-							Moto moto=(Moto) ois.readObject();
+							Vehiculo moto=(Moto) ois.readObject();
 							System.out.println(moto);
 							}catch(EOFException m) {
 								finArchivo=true;
@@ -48,7 +48,7 @@ public class Case3 {
 					ois=new ObjectInputStream(new FileInputStream(fichV));
 					while(!finArchivo) {
 						try {
-							Coche coche=(Coche) ois.readObject();
+							Vehiculo coche=(Coche) ois.readObject();
 							System.out.println(coche);
 							}catch(EOFException c) {
 								finArchivo=true;
@@ -71,7 +71,7 @@ public class Case3 {
 					ois=new ObjectInputStream(new FileInputStream(fichV));
 					while(!finArchivo) {
 						try {
-							Furgoneta furgoneta=(Furgoneta) ois.readObject();
+							Vehiculo furgoneta=(Furgoneta) ois.readObject();
 							System.out.println(furgoneta);
 							}catch(EOFException c) {
 								finArchivo=true;
