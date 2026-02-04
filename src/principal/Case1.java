@@ -96,7 +96,7 @@ public class Case1 {
 
 
 
-			System.out.println("Introduce el vehiculo que es (COCHE | MOTO | FURGONETA): ");
+			System.out.println("Introduce el tipo de vehículo: ");
 			while (!correctoSwitch) {
 				elegir = Utilidades.introducirCadena("COCHE", "MOTO", "FURGONETA");
 
