@@ -40,7 +40,7 @@ public class ConcesionarioMain {
 				Case5.eliminarVehiculo(fichV, fichAux);
 				break;
 			case 6:
-				
+				Case6.introducirCliente(fichC, fichV);
 				break;
 			case 7:
 			 
@@ -162,6 +162,7 @@ public class ConcesionarioMain {
 				valido = true;
 			} else {
 				System.out.println("Formato de teléfono invalido, inténtelo de nuevo");
+				valido = false;
 			}
 		} while (!valido);
 		
