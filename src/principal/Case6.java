@@ -92,6 +92,7 @@ public class Case6 {
 
 	}
 
+	@SuppressWarnings("unlikely-arg-type")
 	public static Vehiculo reservaCompra(File fichAux, File fichV, Vehiculo vehiculo) throws FileNotFoundException, IOException {
 		String reservarComprar, matricula = "";
 		boolean valido, finArchivo = false, encontrado = false;
@@ -118,9 +119,13 @@ public class Case6 {
 					try {
 						Vehiculo v = (Vehiculo) ois.readObject();
 						if (matricula.equals(v.getMatricula())) {
-							v.setEstado(Estado.valueOf("RESERVADO"));
-							vehiculo = v;
-							encontrado = true;
+							if (v.getEstado().equals("RESERVADO")) {
+								System.out.println("Este vehículo ya ha sido reservado por otra perosna.");
+							} else {
+								v.setEstado(Estado.valueOf("RESERVADO"));
+								vehiculo = v;
+								encontrado = true;
+							}
 						}
 						oos.writeObject(v);
 					} catch (EOFException e) {
