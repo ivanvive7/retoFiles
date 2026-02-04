@@ -14,85 +14,62 @@ public class Case3 {
 
 		String tipo;
 		ObjectInputStream ois = null;
-		boolean finArchivo = false;
+		boolean hayVehiculos = false;
 
-		System.out.println("¿Que tipo de vehiculo quieres mostrar?:" + " Moto - Coche - Furgoneta.");
-		tipo = Utilidades.introducirCadena("Moto", "Coche", "Furgoneta");
-		switch (tipo.toLowerCase()) {
-		case "moto":
-			if (fichV.exists()) {
-				try {
-					ois = new ObjectInputStream(new FileInputStream(fichV));
-					while (!finArchivo) {
-						try {
+		  System.out.println("¿Que tipo de vehiculo quieres mostrar?: Moto - Coche - Furgoneta.");
+		    tipo = Utilidades.introducirCadena("Moto", "Coche", "Furgoneta");
+		    
+		    if (!fichV.exists()) {
+		        System.out.println("El fichero no existe.");
+		        return;
+		    }
 
-							Vehiculo moto = (Moto) ois.readObject();
-							System.out.println(moto);
-						} catch (EOFException m) {
-							System.out.println("No hay motos registradas");
-							finArchivo = true;
-						}
-					}
-				} catch (FileNotFoundException e) {
-					System.out.println("No se encontró el fichero.");
-				} catch (ClassNotFoundException e) {
-					System.out.println("La clase Moto no es válida.");
-				} catch (IOException e) {
-					System.out.println("Error leyendo el fichero.");
-				}
-			} else {
-				System.out.println("El fichero no existe.");
-			}
-			break;
-		case "coche":
-			if (fichV.exists()) {
-				try {
-					ois = new ObjectInputStream(new FileInputStream(fichV));
-					while (!finArchivo) {
-						try {
-
-							Vehiculo coche = (Coche) ois.readObject();
-							System.out.println(coche);
-						} catch (EOFException c) {
-							System.out.println("No hay Coches registrados");
-							finArchivo = true;
-						}
-					}
-				} catch (FileNotFoundException e) {
-					System.out.println("No se encontró el fichero.");
-				} catch (ClassNotFoundException e) {
-					System.out.println("La clase Coche no es válida.");
-				} catch (IOException e) {
-					System.out.println("Error leyendo el fichero.");
-				}
-			} else {
-				System.out.println("El fichero no existe.");
-			}
-			break;
-		case "furgoneta":
-			if (fichV.exists()) {
-				try {
-					ois = new ObjectInputStream(new FileInputStream(fichV));
-					while (!finArchivo) {
-						try {
-							Vehiculo furgoneta = (Furgoneta) ois.readObject();
-							System.out.println(furgoneta);
-						} catch (EOFException c) {
-							System.out.println("No hay furgonetas registradas");
-							finArchivo = true;
-						}
-					}
-				} catch (FileNotFoundException e) {
-					System.out.println("No se encontró el fichero.");
-				} catch (ClassNotFoundException e) {
-					System.out.println("La clase Furgoneta no es válida.");
-				} catch (IOException e) {
-					System.out.println("Error leyendo el fichero.");
-				}
-			} else {
-				System.out.println("El fichero no existe.");
-			}
-			break;
-		}
+		    try {
+		        ois = new ObjectInputStream(new FileInputStream(fichV));
+		        
+		        while (!hayVehiculos) {
+		            try {
+		                Vehiculo vehiculo = (Vehiculo) ois.readObject();
+		                
+		                
+		                switch (tipo.toLowerCase()) {
+		                    case "moto":
+		                        if (vehiculo instanceof Moto) {
+		                            System.out.println(vehiculo);
+		                            hayVehiculos = true;
+		                        }
+		                        break;
+		                    case "coche":
+		                        if (vehiculo instanceof Coche) {
+		                            System.out.println(vehiculo);
+		                            hayVehiculos = true;
+		                        }
+		                        break;
+		                    case "furgoneta":
+		                        if (vehiculo instanceof Furgoneta) {
+		                            System.out.println(vehiculo);
+		                            hayVehiculos = true;
+		                        }
+		                        break;
+		                }
+		            } catch (EOFException e) {
+		                hayVehiculos = false;
+		                break;
+		            }
+		        }
+		        
+		        if (!hayVehiculos) {
+		            System.out.println("No hay " + tipo + "S registrados.");
+		        }
+		        
+		        ois.close();
+		        
+		    } catch (FileNotFoundException e) {
+		        System.out.println("No se encontró el fichero.");
+		    } catch (ClassNotFoundException e) {
+		        System.out.println("Clase no válida.");
+		    } catch (IOException e) {
+		        System.out.println("Error leyendo el fichero: " + e.getMessage());
+		    }
 	}
 }
