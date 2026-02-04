@@ -13,8 +13,7 @@ import clases.*;
 import utilidades.*;
 
 public class Case5 {
-	File fichAux = new File("vehiculosAuxiliar.dat");
-	File fichV =new File("vehiculos.dat");
+	
 
 	public static void eliminarVehiculo(File fichAux, File fichV) {
 		String matricula;

@@ -14,7 +14,7 @@ public class ConcesionarioMain {
 	public static void main(String[] args) throws MatriculaException, IOException {
 		// TODO Auto-generated method stub
 
-		
+		File fichAux = new File("vehiculosAuxiliar.dat");
 		File fichV = new File("vehiculos.dat");
 		File fichC = new File("clientes.dat");
 		File fichT = new File("texto.dat"); 
@@ -37,7 +37,7 @@ public class ConcesionarioMain {
 				Case4.modificarVehiculo(fichV);
 				break;
 			case 5:
-				Case5.eliminarVehiculo(fichV);
+				Case5.eliminarVehiculo(fichV, fichAux);
 				break;
 			case 6:
 				
