@@ -19,8 +19,7 @@ import utilidades.Utilidades;
 
 public class Case6 {
 	
-	File fichC = new File("clientes.dat");
-	File fichV = new File("vehiculos.dat");
+	
 	
 	public static void introducirCliente(File fichC, File fichV) {
 		String dni="", nom, ape, telf;
