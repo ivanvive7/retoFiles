@@ -26,17 +26,6 @@ public class Case4 {
 		boolean finArchivo=false, encontrado=false;
 
 		do {
-			System.out.println("¿Qué quieres modificar?"
-					+ "\n1. Matricula."
-					+ "\n2. Marca."
-					+ "\n3. Modelo."
-					+ "\n4. Precio base."
-					+ "\n5. Combustible."
-					+ "\n6. Fecha de alta."
-					+ "\n7. Color."
-					+ "\nSelecciona una opción: ");
-			opcion=Utilidades.leerInt(1,7);
-
 			if(fichV.exists()) {
 				try {
 					oos=new ObjectOutputStream(new FileOutputStream(fichAux));
@@ -44,6 +33,17 @@ public class Case4 {
 					System.out.println("Introduce la matrícula: ");
 					matricula=Utilidades.introducirCadena();
 
+					System.out.println("¿Qué quieres modificar?"
+							+ "\n1. Matricula."
+							+ "\n2. Marca."
+							+ "\n3. Modelo."
+							+ "\n4. Precio base."
+							+ "\n5. Combustible."
+							+ "\n6. Fecha de alta."
+							+ "\n7. Color."
+							+ "\nSelecciona una opción: ");
+					opcion=Utilidades.leerInt(1,7);
+					
 					while(!finArchivo) {
 						try {
 							Vehiculo v=(Vehiculo) ois.readObject();
