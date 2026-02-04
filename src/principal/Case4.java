@@ -114,7 +114,7 @@ public class Case4 {
 						finArchivo=true;
 					}
 				}
-
+ 
 				ois.close();
 				oos.close();
 

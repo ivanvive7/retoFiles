@@ -36,5 +36,5 @@ public class Case2 {
 			System.out.println("El fichero no existe.");
 		}
 	}
-
+ 
 }
