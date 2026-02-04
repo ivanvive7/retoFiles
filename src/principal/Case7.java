@@ -74,6 +74,7 @@ public class Case7 {
 											if (matricula.equals(v.getMatricula())) {
 												if (v.getEstado().equals("RESERVADO")) {
 													v.setEstado(Estado.valueOf("VENDIDO"));
+													encontrado=true;
 												} else {
 													System.out.println("Este vehículo ya lo ha comprado.");
 												}
@@ -86,26 +87,29 @@ public class Case7 {
 									e.printStackTrace();
 								}
 							}
-							while (!finArchivo) {
-								try {
-									Vehiculo v = (Vehiculo) ois.readObject();
-									if (matricula.equals(v.getMatricula())) {
-										vehiculo = v;
-										encontrado = true;
-									} else {
-										oos.writeObject(v);
+							if (!encontrado) {
+								/*while (!finArchivo) {
+									try {
+										Vehiculo v = (Vehiculo) ois.readObject();
+										if (matricula.equals(v.getMatricula())) {
+											vehiculo = v;
+											encontrado = true;
+										} else {
+											oos.writeObject(v);
+										}
+									} catch (EOFException e) {
+										finArchivo = true;
+									} catch (ClassNotFoundException e) {
+										e.printStackTrace();
 									}
-								} catch (EOFException e) {
-									finArchivo = true;
-								} catch (ClassNotFoundException e) {
-									e.printStackTrace();
-								}
+								}*/
 							}
 							if (!encontrado) {
 								System.out.println("No existe ningun vehículo con esa matrícula.");
 							}
 							oos.close();
 							ois.close();
+							ois2.close();
 							fichV.delete();
 							fichVAux.renameTo(fichV);
 						} while (!encontrado);
