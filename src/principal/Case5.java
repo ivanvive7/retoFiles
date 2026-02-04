@@ -13,10 +13,10 @@ import clases.*;
 import utilidades.*;
 
 public class Case5 {
-	
-	public static void eliminarVehiculo() {
-		File fichAux=new File("vehiculosAuxiliar.dat");
-		File fichV=new File("vehiculos.dat");
+	File fichAux = new File("vehiculosAuxiliar.dat");
+	File fichV =new File("vehiculos.dat");
+
+	public static void eliminarVehiculo(File fichAux, File fichV) {
 		String matricula;
 		ObjectOutputStream oos;
 		ObjectInputStream ois=null;
