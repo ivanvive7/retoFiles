@@ -21,13 +21,15 @@ public class Case6 {
 
 	public static void introducirCliente(File fichC, File fichV) {
 		String dni = "", nom, ape, telf;
-		boolean existe, valido = false, telefonoValido = false;
+		boolean existe, valido;
+		
 		Cliente cliente;
 		Vehiculo vehiculo = null;
-		File fichAux = new File("vehiculosAuxiliarRC.dat");
+		
+		File fichAux = new File("vehiculosAuxiliar6.dat");
+		
 		ObjectOutputStream oos;
 		MyObjectOutputStream moos;
-		ObjectInputStream ois;
 
 		if (fichV.exists()) { 	
 			valido = false;
@@ -44,6 +46,7 @@ public class Case6 {
 			if (!existe) {
 				if (!fichC.exists()) {
 					try {
+						oos = new ObjectOutputStream(new FileOutputStream(fichC));
 						System.out.println("Introduce el mombre del cliente:");
 						nom = Utilidades.introducirCadena();
 						System.out.println("Introduce el apellido del cliente:");
@@ -52,7 +55,6 @@ public class Case6 {
 						telf = Utilidades.introducirCadena();
 						telf = ConcesionarioMain.validarTelf(telf);
 						vehiculo = reservaCompra(fichAux, fichV, vehiculo);
-						oos = new ObjectOutputStream(new FileOutputStream(fichC));
 						cliente = new Cliente(dni, nom, ape, telf);
 						cliente.getMapaVehiculos().put(vehiculo.getMatricula(), vehiculo);
 						oos.writeObject(cliente);
@@ -64,6 +66,7 @@ public class Case6 {
 					}
 				} else {
 					try {
+						moos = new MyObjectOutputStream(new FileOutputStream(fichC, true));
 						System.out.println("Introduce el mombre del cliente:");
 						nom = Utilidades.introducirCadena();
 						System.out.println("Introduce el apellido del cliente:");
@@ -72,7 +75,6 @@ public class Case6 {
 						telf = Utilidades.introducirCadena();
 						telf = ConcesionarioMain.validarTelf(telf);
 						vehiculo = reservaCompra(fichAux, fichV, vehiculo);
-						moos = new MyObjectOutputStream(new FileOutputStream(fichC, true));
 						cliente = new Cliente(dni, nom, ape, telf);
 						cliente.getMapaVehiculos().put(vehiculo.getMatricula(), vehiculo);
 						moos.writeObject(cliente);
@@ -96,6 +98,7 @@ public class Case6 {
 	public static Vehiculo reservaCompra(File fichAux, File fichV, Vehiculo vehiculo) throws FileNotFoundException, IOException {
 		String reservarComprar, matricula = "";
 		boolean valido, finArchivo = false, encontrado = false;
+		
 		ObjectOutputStream oos;
 		ObjectInputStream ois;
 
@@ -161,8 +164,13 @@ public class Case6 {
 					try {
 						Vehiculo v = (Vehiculo) ois.readObject();
 						if (matricula.equals(v.getMatricula())) {
-							vehiculo = v;
-							encontrado = true;
+							if (v.getEstado().equals("RESERVADO")) {
+								System.out.println("Este vehículo ya ha sido reservado por otra perosna.");
+							} else {
+								v.setEstado(Estado.valueOf("VENDIDO"));
+								vehiculo = v;
+								encontrado = true;
+							}
 						} else {
 							oos.writeObject(v);
 						}
