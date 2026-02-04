@@ -162,7 +162,7 @@ public class ConcesionarioMain {
 				valido = true;
 			} else {
 				System.out.println("Formato de teléfono invalido, inténtelo de nuevo");
-				valido = false;
+				telf=Utilidades.introducirCadena();
 			}
 		} while (!valido);
 		
