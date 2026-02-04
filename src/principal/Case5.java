@@ -10,23 +10,30 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import clases.*;
+import excepciones.MatriculaException;
 import utilidades.*;
 
 public class Case5 {
 	
 
 	public static void eliminarVehiculo(File fichAux, File fichV) {
-		String matricula;
+		String matricula = null;
 		ObjectOutputStream oos;
 		ObjectInputStream ois=null;
-		boolean finArchivo=false, encontrado=false;
+		boolean finArchivo=false, encontrado=false, valido=false;;
 		if(fichV.exists()) {
 			try {
 				oos=new ObjectOutputStream(new FileOutputStream(fichAux));
 				ois=new ObjectInputStream(new FileInputStream(fichV));
-				System.out.println("Introduzca la matricula del coche que desea eliminar");
-				matricula = Utilidades.introducirCadena();
-				
+				do {
+					try {
+						System.out.println("Introduce la matrícula del vehículo:");
+						matricula=Utilidades.introducirCadena();
+						valido=ConcesionarioMain.validarMatricula(matricula);
+					} catch (MatriculaException e) {
+						System.out.println(e.getMessage());
+					}
+				} while (!valido);			
 				while (!finArchivo) {
 					try {
 						Vehiculo v=(Vehiculo) ois.readObject();
