@@ -7,7 +7,7 @@ import clases.*;
 public class Case2 {
 
 	File fichV=new File("Vehiculos.dat");
-	
+
 	public static void listarVehiculos(File fichV) {
 		ObjectInputStream ois=null;
 		boolean finArchivo=false;
@@ -18,10 +18,13 @@ public class Case2 {
 					try {
 						Vehiculo v=(Vehiculo) ois.readObject();
 						System.out.println(v);
-						}catch(EOFException v) {
-							finArchivo=true;
+
+					}catch(EOFException v) {
+						finArchivo=true;
 					}
 				}
+
+				ois.close();
 			}catch (FileNotFoundException e) {
 				System.out.println("No se encontró el fichero.");
 			}catch (ClassNotFoundException e) {
