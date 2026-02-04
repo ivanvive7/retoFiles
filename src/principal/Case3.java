@@ -11,80 +11,83 @@ import utilidades.*;
 
 public class Case3 {
 	public static void ListarPorTipo(File fichV) {
-		
+
 		String tipo;
 		ObjectInputStream ois = null;
-		boolean finArchivo=false;
-		
+		boolean finArchivo = false;
+
 		System.out.println("¿Que tipo de vehiculo quieres mostrar?:" + " Moto - Coche - Furgoneta.");
 		tipo = Utilidades.introducirCadena("Moto", "Coche", "Furgoneta");
-		switch(tipo.toLowerCase()) {
+		switch (tipo.toLowerCase()) {
 		case "moto":
-			if(fichV.exists()) {
+			if (fichV.exists()) {
 				try {
-					ois=new ObjectInputStream(new FileInputStream(fichV));
-					while(!finArchivo) {
+					ois = new ObjectInputStream(new FileInputStream(fichV));
+					while (!finArchivo) {
 						try {
-							Moto moto=(Moto) ois.readObject();
+							Vehiculo moto = (Moto) ois.readObject();
 							System.out.println(moto);
-							}catch(EOFException m) {
-								finArchivo=true;
+						} catch (EOFException m) {
+							System.out.println("No hay motos registradas");
+							finArchivo = true;
 						}
 					}
-				}catch (FileNotFoundException e) {
+				} catch (FileNotFoundException e) {
 					System.out.println("No se encontró el fichero.");
-				}catch (ClassNotFoundException e) {
+				} catch (ClassNotFoundException e) {
 					System.out.println("La clase Moto no es válida.");
-				}catch (IOException e) {
+				} catch (IOException e) {
 					System.out.println("Error leyendo el fichero.");
 				}
-			}else {
+			} else {
 				System.out.println("El fichero no existe.");
 			}
 			break;
 		case "coche":
-			if(fichV.exists()) {
+			if (fichV.exists()) {
 				try {
-					ois=new ObjectInputStream(new FileInputStream(fichV));
-					while(!finArchivo) {
+					ois = new ObjectInputStream(new FileInputStream(fichV));
+					while (!finArchivo) {
 						try {
-							Coche coche=(Coche) ois.readObject();
+							Vehiculo coche = (Coche) ois.readObject();
 							System.out.println(coche);
-							}catch(EOFException c) {
-								finArchivo=true;
+						} catch (EOFException c) {
+							System.out.println("No hay Coches registrados");
+							finArchivo = true;
 						}
 					}
-				}catch (FileNotFoundException e) {
+				} catch (FileNotFoundException e) {
 					System.out.println("No se encontró el fichero.");
-				}catch (ClassNotFoundException e) {
+				} catch (ClassNotFoundException e) {
 					System.out.println("La clase Coche no es válida.");
-				}catch (IOException e) {
+				} catch (IOException e) {
 					System.out.println("Error leyendo el fichero.");
 				}
-			}else {
+			} else {
 				System.out.println("El fichero no existe.");
 			}
 			break;
-		case "furgoneta" :
-			if(fichV.exists()) {
+		case "furgoneta":
+			if (fichV.exists()) {
 				try {
-					ois=new ObjectInputStream(new FileInputStream(fichV));
-					while(!finArchivo) {
+					ois = new ObjectInputStream(new FileInputStream(fichV));
+					while (!finArchivo) {
 						try {
-							Furgoneta furgoneta=(Furgoneta) ois.readObject();
+							Vehiculo furgoneta = (Furgoneta) ois.readObject();
 							System.out.println(furgoneta);
-							}catch(EOFException c) {
-								finArchivo=true;
+						} catch (EOFException c) {
+							System.out.println("No hay furgonetas registradas");
+							finArchivo = true;
 						}
 					}
-				}catch (FileNotFoundException e) {
+				} catch (FileNotFoundException e) {
 					System.out.println("No se encontró el fichero.");
-				}catch (ClassNotFoundException e) {
+				} catch (ClassNotFoundException e) {
 					System.out.println("La clase Furgoneta no es válida.");
-				}catch (IOException e) {
+				} catch (IOException e) {
 					System.out.println("Error leyendo el fichero.");
 				}
-			}else {
+			} else {
 				System.out.println("El fichero no existe.");
 			}
 			break;
