@@ -37,17 +37,19 @@ public class ConcesionarioMain {
 				Case4.modificarVehiculo(fichV);
 				break;
 			case 5:
-				
+				Case5.eliminarVehiculo(fichV);
 				break;
 			case 6:
 				
 				break;
 			case 7:
+			
 				break;
 			case 8:
 				Case8.listarClientes(fichC);
 				break;
 			case 9:
+				Case9.mostrarCliente(fichC);
 				break;
 			case 10:
 				System.out.println("Hasta la próxima.");
