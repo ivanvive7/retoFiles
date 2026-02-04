@@ -31,7 +31,6 @@ public class Case7 {
 		
 		ObjectOutputStream oos;
 		ObjectInputStream ois;
-		ObjectInputStream ois2;
 		
 		if (fichC.exists()) {
 			valido = false;
@@ -53,8 +52,6 @@ public class Case7 {
 				} else {
 					try {
 						oos = new ObjectOutputStream(new FileOutputStream(fichVAux));
-						ois = new ObjectInputStream(new FileInputStream(fichV));
-						ois2 = new ObjectInputStream(new FileInputStream(fichC));
 						do {
 							valido = false;
 							do {
@@ -68,7 +65,8 @@ public class Case7 {
 							} while (!valido);
 							while (!finArchivo) {
 								try {
-									Cliente c = (Cliente) ois2.readObject();
+									ois = new ObjectInputStream(new FileInputStream(fichC));
+									Cliente c = (Cliente) ois.readObject();
 									if (c.getDni().equals(dni)) {
 										for (Vehiculo v: c.getMapaVehiculos().values()) {
 											if (matricula.equals(v.getMatricula())) {
@@ -81,6 +79,7 @@ public class Case7 {
 											}	
 										}
 									}
+									ois.close();
 								} catch (EOFException e) {
 									finArchivo = true;
 								} catch (ClassNotFoundException e) {
@@ -90,6 +89,7 @@ public class Case7 {
 							if (!encontrado) {
 								/*while (!finArchivo) {
 									try {
+										ois = new ObjectInputStream(new FileInputStream(fichV));
 										Vehiculo v = (Vehiculo) ois.readObject();
 										if (matricula.equals(v.getMatricula())) {
 											vehiculo = v;
@@ -102,14 +102,13 @@ public class Case7 {
 									} catch (ClassNotFoundException e) {
 										e.printStackTrace();
 									}
+									ois.close();
 								}*/
 							}
 							if (!encontrado) {
 								System.out.println("No existe ningun vehículo con esa matrícula.");
 							}
 							oos.close();
-							ois.close();
-							ois2.close();
 							fichV.delete();
 							fichVAux.renameTo(fichV);
 						} while (!encontrado);
