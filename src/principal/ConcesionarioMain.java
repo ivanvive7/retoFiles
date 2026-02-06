@@ -10,14 +10,13 @@ import utilidades.*;
 
 public class ConcesionarioMain {
 
-
 	public static void main(String[] args) throws MatriculaException, IOException {
 		// TODO Auto-generated method stub
 
 		File fichAux = new File("vehiculosAuxiliar.dat");
 		File fichV = new File("vehiculos.dat");
 		File fichC = new File("clientes.dat");
-		File fichT = new File("texto.dat"); 
+		File fichT = new File("texto.dat");
 
 		int opcion;
 
@@ -43,7 +42,7 @@ public class ConcesionarioMain {
 				Case6.introducirCliente(fichC, fichV);
 				break;
 			case 7:
-			 
+
 				break;
 			case 8:
 				Case8.listarClientes(fichC);
@@ -61,73 +60,68 @@ public class ConcesionarioMain {
 
 	public static int menu() {
 		int opcion;
-		System.out.println("--------------------------MENÚ--------------------------" 
-				+ "\n1.  Introducir vehículos."
-				+ "\n2.  Listar vehículos."
-				+ "\n3.  Listar vehículos por tipo." 
-				+ "\n4.  Modificar vehículo."
+		System.out.println("--------------------------MENÚ--------------------------" + "\n1.  Introducir vehículos."
+				+ "\n2.  Listar vehículos." + "\n3.  Listar vehículos por tipo." + "\n4.  Modificar vehículo."
 				+ "\n5.  Eliminar un vehículo defectuoso."
 				+ "\n6.  Introducir clientes que van a reservar o comprar un vehículo."
 				+ "\n7.  Añadir una compra o reserva a un cliente ya registrado." + "\n8.  Mostrar clientes."
-				+ "\n9.  Buscar clientes." 
-				+ "\n10. Salir." 
-				+ "\nSelecciona una opción: ");
+				+ "\n9.  Buscar clientes." + "\n10. Salir." + "\nSelecciona una opción: ");
 		opcion = Utilidades.leerInt(1, 10);
 		return opcion;
 	}
 
 	public static boolean buscarMatricula(File fichV, String matricula) {
 		boolean encontrado = false;
-		ObjectInputStream ois=null;
-		boolean finArchivo=false;
-		if(fichV.exists()) {
+		ObjectInputStream ois = null;
+		boolean finArchivo = false;
+		if (fichV.exists()) {
 			try {
-				ois=new ObjectInputStream(new FileInputStream(fichV));
-				while (!finArchivo) { 
+				ois = new ObjectInputStream(new FileInputStream(fichV));
+				while (!finArchivo) {
 					try {
-						Vehiculo v=(Vehiculo) ois.readObject();
-						if(matricula.equals(v.getMatricula())) {
-							encontrado=true;
+						Vehiculo v = (Vehiculo) ois.readObject();
+						if (matricula.equals(v.getMatricula())) {
+							encontrado = true;
 						}
-					}catch(EOFException e) {
-						finArchivo=true;
+					} catch (EOFException e) {
+						finArchivo = true;
 					}
 				}
 				ois.close();
-			}catch (FileNotFoundException e) {
+			} catch (FileNotFoundException e) {
 				System.out.println("No se encontró el fichero.");
-			}catch (ClassNotFoundException e) {
+			} catch (ClassNotFoundException e) {
 				System.out.println("La clase Vehiculo no es válida.");
-			}catch (IOException e) {
+			} catch (IOException e) {
 				System.out.println("Error leyendo el fichero.");
 			}
 		}
 		return encontrado;
 	}
-	
+
 	public static boolean buscarDni(File fichC, String dni) {
 		boolean encontrado = false;
-		ObjectInputStream ois=null;
-		boolean finArchivo=false;
-		if(fichC.exists()) {
+		ObjectInputStream ois = null;
+		boolean finArchivo = false;
+		if (fichC.exists()) {
 			try {
-				ois=new ObjectInputStream(new FileInputStream(fichC));
+				ois = new ObjectInputStream(new FileInputStream(fichC));
 				while (!finArchivo) {
 					try {
-						Cliente c=(Cliente) ois.readObject();
-						if(dni.equals(c.getDni())) {
-							encontrado=true;
+						Cliente c = (Cliente) ois.readObject();
+						if (dni.equals(c.getDni())) {
+							encontrado = true;
 						}
-					}catch(EOFException e) {
-						finArchivo=true;
+					} catch (EOFException e) {
+						finArchivo = true;
 					}
 				}
 				ois.close();
-			}catch (FileNotFoundException e) {
+			} catch (FileNotFoundException e) {
 				System.out.println("No se encontró el fichero.");
-			}catch (ClassNotFoundException e) {
+			} catch (ClassNotFoundException e) {
 				System.out.println("La clase Cliente no es válida.");
-			}catch (IOException e) {
+			} catch (IOException e) {
 				System.out.println("Error leyendo el fichero.");
 			}
 		}
@@ -154,19 +148,80 @@ public class ConcesionarioMain {
 		}
 		return valido;
 	}
-	
-	public static String validarTelf(String telf){
+
+	public static String validarTelf(String telf) {
 		boolean valido = false;
 		do {
 			if (Pattern.matches("^(\\+34)?[ -]?[0-9]{3}[ -]?[0-9]{3}[ -]?[0-9]{3}$", telf)) {
 				valido = true;
 			} else {
 				System.out.println("Formato de teléfono invalido, inténtelo de nuevo");
-				telf=Utilidades.introducirCadena();
+				telf = Utilidades.introducirCadena();
 			}
 		} while (!valido);
-		
+
 		return telf;
 	}
 
+	public static void FillFicheroTexto() {
+		FileWriter fichero = null;
+		BufferedWriter bw = null;
+
+		try {
+			fichero = new FileWriter("Condiciones_Privacidad.txt");
+			bw = new BufferedWriter(fichero);
+
+			bw.write("CONDICIONES DE COMPRA Y PRIVACIDAD");
+			bw.newLine();
+			bw.write("1. El comprador confirma haber recibido informacion clara sobre el vehiculo y su precio final.");
+			bw.newLine();
+			bw.write("2. La compra queda formalizada tras la firma del contrato y el pago acordado.");
+			bw.newLine();
+			bw.write("3. Cualquier cambio en precio, equipamiento o plazos sera comunicado para su aprobacion.");
+			bw.newLine();
+			bw.write("4. El comprador aportara la documentacion necesaria para la matriculacion o transferencia.");
+			bw.newLine();
+			bw.write("5. El desistimiento se regira por las condiciones del contrato de compraventa.");
+			bw.newLine();
+			bw.write("6. El vehiculo dispone de la garantia legal vigente y, si procede, garantias adicionales.");
+			bw.newLine();
+			bw.write("7. Los datos del comprador se usaran solo para gestionar la compra y servicios asociados.");
+			bw.newLine();
+			bw.write(
+					"8. El concesionario garantiza la confidencialidad y el cumplimiento de la normativa de proteccion de datos.");
+			bw.newLine();
+			bw.write("9. El comprador puede ejercer sus derechos legales mediante solicitud al concesionario.");
+			bw.newLine();
+
+			bw.close();
+			fichero.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void LeerFicheroTexto() throws IOException {
+		File archivo = new File("Condiciones_Privacidad.txt");
+		FileReader fr = null;
+		BufferedReader br = null;
+
+		try {
+			fr = new FileReader(archivo);
+			br = new BufferedReader(fr);
+
+			String linea;
+
+			while ((linea = br.readLine()) != null) {
+				System.out.println(linea);
+			}
+
+			br.close();
+			fr.close();
+
+		} catch (FileNotFoundException e) {
+			System.out.println("El archivo no existe o no se encuentra en la ruta indicada.");
+			e.printStackTrace();
+		}
+	}
 }
