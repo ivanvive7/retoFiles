@@ -94,7 +94,7 @@ public class Case4 {
 										break;
 									case 6:
 										System.out.println("Introduce la nueva fecha de alta (dd/MM/yyyy): ");
-										fechaAlta=Utilidades.leerFechaAMD();
+										fechaAlta=Utilidades.leerFechaDMA();
 										v.setFechaAlta(fechaAlta);
 										break;
 									case 7:
