@@ -18,15 +18,15 @@ public class Case1 {
 		Estado estado = null;
 		Combustible combustible = null;
 		LocalDate fechaAlta = null;
-		
+
 		// Variables coche
 		int puertas;
 		boolean automatico, descapotable;
-		
+
 		// Variables moto
 		int cilindrada;
 		TipoMoto tipoMoto = null;
-		
+
 		// Vatiables furgoneta
 		int mma;
 		boolean correderas;
@@ -48,7 +48,6 @@ public class Case1 {
 					}
 
 				} while (!valida);
-				System.out.println("Matrícula válida");
 
 			} catch (FileNotFoundException e) {
 				System.out.println("Error, fichero no encontrado");
@@ -76,7 +75,7 @@ public class Case1 {
 			}
 
 			System.out.println("Introduce el combustible del vehiculo (GASOLINA | DIESEL | HIBRIDO | ELECTRICO): ");
-  
+
 			while (!correctoCombustible) {
 				try {
 					respuestaCombustible = Utilidades.introducirCadena();
@@ -255,16 +254,26 @@ public class Case1 {
 
 							System.out.println("Coche creado con:");
 							System.out.println("Puertas: " + puertas);
-							System.out.println("Automático: " + automatico);
-							System.out.println("Descapotable: " + descapotable);
+							System.out.print("Automático: ");
+							if(automatico) {
+								System.out.println("si");
+							}else {
+								System.out.println("no");
+							}
+							System.out.print("Descapotable: ");
+							if(descapotable) {
+								System.out.println("si");
+							}else {
+								System.out.println("no");
+							}
 							Vehiculo c = new Coche(matricula, marca, modelo, precioBase, estado, combustible, color, fechaAlta, puertas, automatico, descapotable);
 							moos.writeObject(c);
 							moos.close();
 							correctoSwitch = true;
 							break;
-							
+
 						case "MOTO":
-							
+
 							System.out.println("Has elegido MOTO");
 
 							System.out.println("Cilindrada:");
@@ -290,7 +299,7 @@ public class Case1 {
 							moos.close();
 							correctoSwitch  = true;
 							break;
-							
+
 						case "FURGONETA":
 
 							System.out.println("Has elegido FURGONETA");
@@ -306,7 +315,12 @@ public class Case1 {
 
 							System.out.println("Furgoneta creada con:");
 							System.out.println("MMA: " + mma);
-							System.out.println("Puertas correderas: " + correderas);
+							System.out.print("Puertas correderas: ");
+							if(correderas) {
+								System.out.println("si");
+							}else {
+								System.out.println("no");
+							}
 							System.out.println("Asientos: " + asientos);
 							Vehiculo f = new Furgoneta(matricula, marca, modelo, precioBase, estado, combustible, color, fechaAlta, mma, correderas, asientos);
 							moos.writeObject(f);
@@ -326,9 +340,9 @@ public class Case1 {
 				System.out.println("Error en la entrada de datos");
 			}
 
-		
+
 		}
-		
+
 
 	}
 

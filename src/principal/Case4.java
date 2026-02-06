@@ -15,18 +15,19 @@ public class Case4 {
 
 	public static void modificarVehiculo(File fichV) throws MatriculaException {
 		File fichAux=new File("vehiculosAux.dat");
-		int opcion, combustible;
-		String matricula, marca, modelo, color, respuesta;
+		int opcion;
+		String matricula, marca, modelo, combustible="", color, respuesta;
 		double precioBase;
 		LocalDate fechaAlta;
 		ObjectOutputStream oos;
 		ObjectInputStream ois=null;
-		boolean finArchivo=false, encontrado=false;
+		boolean finArchivo=false, encontrado=false, correctoCombustible=false, matriculaRepe=false;
 
 		if(fichV.exists()) {
 			try {
 				oos=new ObjectOutputStream(new FileOutputStream(fichAux));
 				ois=new ObjectInputStream(new FileInputStream(fichV));
+				
 				System.out.println("Introduce la matrícula: ");
 				matricula=Utilidades.introducirCadena();
 
@@ -50,11 +51,16 @@ public class Case4 {
 
 									switch(opcion) {
 									case 1:
-										//CONTROLAR QUE LA MATRICULA NO LA TENGA OTRO VEHICULO
+										matriculaRepe=false;
 										do {
 											System.out.println("Introduce la nueva matrícula: ");
 											matricula=Utilidades.introducirCadena();
-										}while(!ConcesionarioMain.validarMatricula(matricula));
+											if(ConcesionarioMain.buscarMatricula(fichV, matricula)) {
+												matriculaRepe=true;
+												System.out.println("Ya hay un vehículo registrado con esa matrícula.");
+											}
+											//esto hay que cambiarlo cuando lo pasemos al main
+										}while(!ConcesionarioMain.validarMatricula(matricula)||matriculaRepe);
 										v.setMatricula(matricula);
 										break;
 									case 2:
@@ -73,22 +79,17 @@ public class Case4 {
 										v.setPrecioBase(precioBase);
 										break;
 									case 5:
-										System.out.println("Introduce el tipo de combustible: "
-												+ "\n1. Gasolina."
-												+ "\n2. Diesel."
-												+ "\n3. Eléctrico."
-												+ "\n4. Híbrido."
-												+ "\nSelecciona una opción: ");
-										combustible=Utilidades.leerInt(1,4);
-										//ESTO MEJPR CON EXCEPCIONES
-										if(combustible==1) {
-											v.setCombustible(Combustible.GASOLINA);
-										}else if(combustible==2) {
-											v.setCombustible(Combustible.DIESEL);
-										}else if(combustible==3) {
-											v.setCombustible(Combustible.ELECTRICO);
-										}else {
-											v.setCombustible(Combustible.HIBRIDO);
+										System.out.println("Introduce el combustible del vehiculo (GASOLINA | DIESEL | HIBRIDO | ELECTRICO): ");
+										  
+										while (!correctoCombustible) {
+											try {
+												combustible = Utilidades.introducirCadena();
+												v.setCombustible( Combustible.valueOf(combustible.toUpperCase()));
+												correctoCombustible = true;
+											} catch (IllegalArgumentException e) {
+												System.out.println("El valor \"" + combustible + "\" no es válido. Inténtalo de nuevo.");
+												System.out.println("Debe ser: GASOLINA, DIESEL, HIBRIDO o ELECTRICO");
+											}
 										}
 										break;
 									case 6:
@@ -107,8 +108,9 @@ public class Case4 {
 									respuesta=Utilidades.introducirCadena("SI", "NO");
 								
 								}while(respuesta.equalsIgnoreCase("Si"));
-								oos.writeObject(v);
+								
 							}
+							oos.writeObject(v);
 
 					}catch(EOFException e) {
 						finArchivo=true;
