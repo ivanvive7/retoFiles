@@ -140,11 +140,11 @@ public class Case6 {
 				if (!encontrado) {
 					System.out.println("No existe ningun vehículo con esa matrícula.");
 				}
-				oos.close();
-				ois.close();
-				fichV.delete();
-				fichAux.renameTo(fichV);
 			} while (!encontrado);
+			oos.close();
+			ois.close();
+			fichV.delete();
+			fichAux.renameTo(fichV);
 			System.out.println("Vehículo reservado con éxito.");
 		} else {
 			oos = new ObjectOutputStream(new FileOutputStream(fichAux));
@@ -183,11 +183,11 @@ public class Case6 {
 				if (!encontrado) {
 					System.out.println("No existe ningun vehículo con esa matrícula.");
 				}
-				oos.close();
-				ois.close();
-				fichV.delete();
-				fichAux.renameTo(fichV);
 			} while (!encontrado);
+			oos.close();
+			ois.close();
+			fichV.delete();
+			fichAux.renameTo(fichV);
 			System.out.println("Vehículo comprado con éxito.");
 		}
 		return vehiculo;
