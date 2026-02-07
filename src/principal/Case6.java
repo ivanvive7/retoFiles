@@ -173,9 +173,10 @@ public class Case6 {
 								if (respuesta) {
 									v.setEstado(Estado.valueOf("VENDIDO"));
 									vehiculo = v;
+									System.out.println("Vehículo comprado con éxito.");
 								} else {
 									oos.writeObject(v);
-									System.out.println("Compra de vehículo cancelada.");
+									System.out.println("Compra cancelada.");
 								}
 								encontrado = true;
 							}
@@ -196,7 +197,6 @@ public class Case6 {
 			ois.close();
 			fichV.delete();
 			fichVAux.renameTo(fichV);
-			System.out.println("Vehículo comprado con éxito.");
 		}
 		return vehiculo;
 	}
