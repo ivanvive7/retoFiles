@@ -180,5 +180,4 @@ public class Case7 {
 			System.out.println("No hay clientes registrados.");
 		}
 	}
-	
 }

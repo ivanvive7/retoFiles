@@ -175,7 +175,7 @@ public class Case6 {
 									vehiculo = v;
 								} else {
 									oos.writeObject(v);
-									System.out.println("Compra cancelada.");
+									System.out.println("Compra de vehículo cancelada.");
 								}
 								encontrado = true;
 							}
