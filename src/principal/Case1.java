@@ -108,10 +108,10 @@ public class Case1 {
 					puertas = Utilidades.leerInt();
 
 					System.out.println("¿Es automático? (SI/NO):");
-					automatico = Utilidades.introducirCadena().equalsIgnoreCase("SI");
+					automatico = Utilidades.introducirCadena("SI", "NO").equalsIgnoreCase("SI");
 
 					System.out.println("¿Es descapotable? (SI/NO):");
-					descapotable = Utilidades.introducirCadena().equalsIgnoreCase("SI");
+					descapotable = Utilidades.introducirCadena("SI", "NO").equalsIgnoreCase("SI");
 
 					System.out.println("Coche creado con:");
 					System.out.println("Puertas: " + puertas);
