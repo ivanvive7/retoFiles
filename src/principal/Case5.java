@@ -14,58 +14,61 @@ import excepciones.MatriculaException;
 import utilidades.*;
 
 public class Case5 {
-	
 
-	public static void eliminarVehiculo(File fichAux, File fichV) {
+	public static void eliminarVehiculo(File fichV, File fichAux) {
 		String matricula = null;
-		ObjectOutputStream oos;
-		ObjectInputStream ois=null;
-		boolean finArchivo=false, encontrado=false, valido=false;;
-		if(fichV.exists()) {
+		ObjectOutputStream oos = null;
+		ObjectInputStream ois = null;
+		boolean finArchivo = false, encontrado = false, valido = false;
+		
+		if (fichV.exists()) {
 			try {
-				oos=new ObjectOutputStream(new FileOutputStream(fichAux));
-				ois=new ObjectInputStream(new FileInputStream(fichV));
 				do {
 					try {
 						System.out.println("Introduce la matrícula del vehículo:");
-						matricula=Utilidades.introducirCadena();
-						valido=ConcesionarioMain.validarMatricula(matricula);
+						matricula = Utilidades.introducirCadena();
+						valido = ConcesionarioMain.validarMatricula(matricula);
 					} catch (MatriculaException e) {
 						System.out.println(e.getMessage());
 					}
-				} while (!valido);			
+				} while (!valido);
+				
+				ois = new ObjectInputStream(new FileInputStream(fichV));
+				oos = new ObjectOutputStream(new FileOutputStream(fichAux));
+				
 				while (!finArchivo) {
 					try {
-						Vehiculo v=(Vehiculo) ois.readObject();
-						if(!v.getMatricula().equalsIgnoreCase(matricula)) {
+						Vehiculo v = (Vehiculo) ois.readObject();
+						if (!v.getMatricula().equalsIgnoreCase(matricula)) {
 							oos.writeObject(v);
-						}else {
+						} else {
 							encontrado = true;
 						}
-					}catch(EOFException e) {
-						finArchivo=true;
+					} catch (EOFException e) {
+						finArchivo = true;
 					}
 				}
+				
 				ois.close();
 				oos.close();
-				
-				if(encontrado) {
+
+				if (encontrado) {
 					fichV.delete();
 					fichAux.renameTo(fichV);
 					System.out.println("Vehículo eliminado correctamente.");
-				}else {
-					System.out.println("No hay ningun vehiculo registrado con esa matricula.");
+				} else {
+					fichAux.delete(); 
+					System.out.println("No hay ningún vehículo registrado con esa matrícula.");
 				}
-				
-				
-			}catch (FileNotFoundException e) {
+
+			} catch (FileNotFoundException e) {
 				System.out.println("No se encontró el fichero.");
-			}catch (ClassNotFoundException e) {
+			} catch (ClassNotFoundException e) {
 				System.out.println("La clase Vehiculo no es válida.");
-			}catch (IOException e) {
-				System.out.println("Error leyendo el fichero.");
+			} catch (IOException e) {
+				System.out.println("Error leyendo/escribiendo el fichero: " + e.getMessage());
 			}
-		}else {
+		} else {
 			System.out.println("El fichero no existe.");
 		}
 	}

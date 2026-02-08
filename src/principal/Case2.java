@@ -6,35 +6,41 @@ import clases.*;
 
 public class Case2 {
 
-	File fichV=new File("Vehiculos.dat");
-
 	public static void listarVehiculos(File fichV) {
-		ObjectInputStream ois=null;
-		boolean finArchivo=false;
-		if(fichV.exists()) {
+		ObjectInputStream ois = null;
+		boolean finArchivo = false;
+		boolean hayVehiculos = false;
+		
+		if (fichV.exists()) {
 			try {
-				ois=new ObjectInputStream(new FileInputStream(fichV));
-				while(!finArchivo) {
+				ois = new ObjectInputStream(new FileInputStream(fichV));
+				while (!finArchivo) {
 					try {
-						Vehiculo v=(Vehiculo) ois.readObject();
+						Vehiculo v = (Vehiculo) ois.readObject();
 						v.visualizar();
+						hayVehiculos = true;
 
-					}catch(EOFException v) {
-						finArchivo=true;
+					} catch (EOFException v) {
+						finArchivo = true;
 					}
 				}
 
 				ois.close();
-			}catch (FileNotFoundException e) {
+				
+				if (!hayVehiculos) {
+					System.out.println("No hay vehículos registrados.");
+				}
+
+			} catch (FileNotFoundException e) {
 				System.out.println("No se encontró el fichero.");
-			}catch (ClassNotFoundException e) {
+			} catch (ClassNotFoundException e) {
 				System.out.println("La clase Vehículo no es válida.");
-			}catch (IOException e) {
+			} catch (IOException e) {
 				System.out.println("Error leyendo el fichero.");
 			}
-		}else {
-			System.out.println("El fichero no existe.");
+		} else {
+			System.out.println("No hay vehículos registrados.");
 		}
 	}
- 
+
 }
