@@ -4,6 +4,7 @@ import java.io.*;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.regex.Pattern;
 
 import clases.*;
@@ -46,7 +47,7 @@ public class ConcesionarioMain {
 				modificarVehiculo(fichV, fichAux);
 				break;
 			case 5:
-			    eliminarVehiculoPorMatricula(fichV, fichAux);			
+				eliminarVehiculoPorMatricula(fichV, fichAux);			
 				break;
 			case 6:
 				Case6.introducirCliente(fichC, fichV);
@@ -55,7 +56,7 @@ public class ConcesionarioMain {
 				Case7.introducirCliente(fichC, fichV);
 				break;
 			case 8:
-				listarClientes(fichC);
+				listarClientesOrdenados(fichC);
 				break;
 			case 9:
 				buscarClienteDNI(fichC);
@@ -73,7 +74,7 @@ public class ConcesionarioMain {
 		ObjectOutputStream oos = null;
 		ObjectInputStream ois = null;
 		boolean finArchivo = false, encontrado = false, valido = false;
-		
+
 		if (fichV.exists()) {
 			try {
 				do {
@@ -85,10 +86,10 @@ public class ConcesionarioMain {
 						System.out.println(e.getMessage());
 					}
 				} while (!valido);
-				
+
 				ois = new ObjectInputStream(new FileInputStream(fichV));
 				oos = new ObjectOutputStream(new FileOutputStream(fichAux));
-				
+
 				while (!finArchivo) {
 					try {
 						Vehiculo v = (Vehiculo) ois.readObject();
@@ -101,7 +102,7 @@ public class ConcesionarioMain {
 						finArchivo = true;
 					}
 				}
-				
+
 				ois.close();
 				oos.close();
 
@@ -130,7 +131,7 @@ public class ConcesionarioMain {
 		ObjectInputStream ois = null;
 		boolean finArchivo = false;
 		boolean hayVehiculos = false;
-		
+
 		if (fichV.exists()) {
 			try {
 				ois = new ObjectInputStream(new FileInputStream(fichV));
@@ -146,7 +147,7 @@ public class ConcesionarioMain {
 				}
 
 				ois.close();
-				
+
 				if (!hayVehiculos) {
 					System.out.println("No hay vehículos registrados.");
 				}
@@ -695,29 +696,46 @@ public class ConcesionarioMain {
 		}
 	}
 
-	private static void listarClientes(File fichC) {
-		ObjectInputStream ois = null;
-		boolean finArchivo = false;
-		if (fichC.exists()) {
-			try {
-				ois = new ObjectInputStream(new FileInputStream(fichC));
-				while (!finArchivo) {
-					try {
-						Cliente c = (Cliente) ois.readObject();
-						System.out.println(c);
-					} catch (EOFException v) {
-						finArchivo = true;
-					}
+	private static void listarClientesOrdenados(File fichC) {
+		TreeMap<String, Cliente> clientesOrdenados= new TreeMap<String, Cliente>();
+		if(fichC.exists()) {
+			meterClientesEnTreeMap(fichC, clientesOrdenados);
+			if(clientesOrdenados.isEmpty()) {
+				System.out.println("No hay clientes para mostrar.");
+			}else {
+				for(Cliente c: clientesOrdenados.values()) {
+					System.out.println(c);
 				}
-			} catch (FileNotFoundException e) {
-				System.out.println("No se encontró el fichero.");
-			} catch (ClassNotFoundException e) {
-				System.out.println("La clase Cliente no es válida.");
-			} catch (IOException e) {
-				System.out.println("Error leyendo el fichero.");
 			}
-		} else {
-			System.out.println("El fichero no existe.");
+		}else {
+			System.out.println("Todavía no hay ningún cliente registrado.");
+		}
+		
+		
+	}
+
+	public static void meterClientesEnTreeMap(File fichC, TreeMap<String, Cliente> clientesOrdenados) {
+		boolean finArchivo=false, encontrado=false;
+		ObjectInputStream ois=null;
+
+		try {
+			ois=new ObjectInputStream(new FileInputStream(fichC));
+			while(!finArchivo) {
+				try {
+					Cliente c=(Cliente) ois.readObject();
+					clientesOrdenados.put(c.getNombre(), c);
+
+				}catch(EOFException e) {
+					finArchivo=true;
+				}
+			}
+			ois.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -869,7 +887,7 @@ public class ConcesionarioMain {
 					System.out.println("Marca: " + v.getMarca());
 					System.out.println("Modelo: " + v.getModelo());
 					System.out.println("Tiempo en stock: " + periodo.getYears() + " año(s) y " + periodo.getMonths()
-							+ " mes(es) \n");
+					+ " mes(es) \n");
 				}
 
 			} catch (EOFException e) {
