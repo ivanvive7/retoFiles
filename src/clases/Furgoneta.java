@@ -53,7 +53,7 @@ public class Furgoneta extends Vehiculo{
 
 	@Override
 	public void visualizar() {
-		System.out.println("Matrícula del coche: "+matricula+"\n"
+		System.out.println("Matrícula de la furgoneta: "+matricula+"\n"
 						+ "Marca: "+marca+"\n"
 						+ "Modelo: "+modelo+"\n"
 						+ "Precio final: "+calcularPrecioFinal()+"\n"
