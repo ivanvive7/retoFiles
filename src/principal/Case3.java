@@ -33,21 +33,18 @@ public class Case3 {
 		                switch (tipo.toLowerCase()) {
 		                    case "moto":
 		                        if (vehiculo instanceof Moto) {
-		                            System.out.println(vehiculo);
 		                            vehiculo.visualizar();
 		                            hayVehiculos = true;
 		                        }
 		                        break;
 		                    case "coche":
 		                        if (vehiculo instanceof Coche) {
-		                            System.out.println(vehiculo);
 		                            vehiculo.visualizar();
 		                            hayVehiculos = true;
 		                        }
 		                        break;
 		                    case "furgoneta":
 		                        if (vehiculo instanceof Furgoneta) {
-		                            System.out.println(vehiculo);
 		                            vehiculo.visualizar();
 		                            hayVehiculos = true;
 		                        }
@@ -55,7 +52,6 @@ public class Case3 {
 		                }
 		            } catch (EOFException e) {
 		                hayVehiculos = false;
-		                break;
 		            }
 		        }
 		        

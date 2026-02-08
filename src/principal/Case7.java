@@ -81,6 +81,7 @@ public class Case7 {
 										e.printStackTrace();
 									}
 								}
+								finArchivo=false;
 								if (!encontrado) {
 									System.out.println("No existe ningun vehículo con esa matrícula.");
 								}
@@ -139,6 +140,7 @@ public class Case7 {
 										e.printStackTrace();
 									}
 								}
+								finArchivo=false;
 								oos.close();
 								ois.close();
 								fichC.delete();
@@ -158,6 +160,7 @@ public class Case7 {
 											e.printStackTrace();
 										}
 									}
+									finArchivo=false;
 									oos.close();
 									ois.close();
 									fichV.delete();
@@ -188,6 +191,7 @@ public class Case7 {
 											e.printStackTrace();
 										}
 									}
+									finArchivo=false;
 									oos.close();
 									ois.close();
 									fichV.delete();
@@ -208,6 +212,7 @@ public class Case7 {
 												e.printStackTrace();
 											}
 										}
+										finArchivo=false;
 										oos.close();
 										ois.close();
 										fichC.delete();
