@@ -46,8 +46,9 @@ public class Case4 {
 											+ "\n5. Combustible."
 											+ "\n6. Fecha de alta."
 											+ "\n7. Color."
+											+ "\n8. Otro."
 											+ "\nSelecciona una opción: ");
-									opcion=Utilidades.leerInt(1,7);
+									opcion=Utilidades.leerInt(1,8);
 
 									switch(opcion) {
 									case 1:
@@ -102,6 +103,9 @@ public class Case4 {
 										color=Utilidades.introducirCadena();
 										v.setColor(color);
 										break;
+									case 8:
+										modificacionPorTipo(v);
+										break;
 									}
 									
 									System.out.println("¿Quieres modificar otra cosa?");
@@ -139,5 +143,95 @@ public class Case4 {
 			System.out.println("El fichero no existe.");
 		}
 
+	}
+	
+	public static void modificacionPorTipo(Vehiculo v) {
+		int opcion;
+		String respuesta, tipo = null;
+		boolean correctoTipo=false;
+		
+		if(v instanceof Coche) {
+			System.out.println("¿Qué quieres modificar?"
+					+ "\n1. Número de puertas."
+					+ "\n2. Automático."
+					+ "\n3. Descapotable."
+					+ "\nSelecciona una opción: ");
+			opcion=Utilidades.leerInt(1,3);
+			switch(opcion) {
+			case 1:
+				System.out.println("Introduce el nuevo número de puertas: ");
+				((Coche) v).setnPuertas(Utilidades.leerInt(2,5));
+				break;
+			case 2:
+				System.out.println("¿Es automático?");
+				respuesta=Utilidades.introducirCadena("SI", "NO");
+				if(respuesta.equalsIgnoreCase("Si")) {
+					((Coche) v).setAutomatico(true);
+				}else {
+					((Coche) v).setAutomatico(false);
+				}
+				break;
+			case 3:
+				System.out.println("¿Es descapotable?");
+				respuesta=Utilidades.introducirCadena("Si", "No");
+				if(respuesta.equalsIgnoreCase("Si")) {
+					((Coche) v).setDescapotable(true);
+				}else {
+					((Coche) v).setDescapotable(false);
+				}
+				break;
+			}
+		}else if(v instanceof Moto) {
+			System.out.println("¿Qué quieres modificar?"
+					+ "\n1. Cilindrada."
+					+ "\n2. Tipo de moto."
+					+ "\nSelecciona una opcion: ");
+			opcion=Utilidades.leerInt(1,2);
+			switch(opcion) {
+			case 1:
+				System.out.println("Introduce la nueva cilindrada: ");
+				((Moto) v).setCilindrada(Utilidades.leerInt(1,3000));
+				break;
+			case 2:
+				System.out.println("Introduce el nuevo tipo de moto (NAKED, CUSTOM, MOTOCROSS, SPORT, TRAIL):");
+				while(!correctoTipo) {
+					try {
+						tipo=Utilidades.introducirCadena();
+						((Moto) v).setTipo(TipoMoto.valueOf(tipo.toUpperCase()));
+						correctoTipo=true;
+					}catch(IllegalArgumentException e) {
+						System.out.println("El valor \"" + tipo + "\" no es válido. Inténtalo de nuevo.");
+						System.out.println("Debe ser: NAKED, CUSTOM, MOTOCROSS, SPORT, TRAIL. ");
+					}
+				}
+				break;
+			}
+		}else if(v instanceof Furgoneta) {
+			System.out.println("¿Qué quieres modificar?"
+					+ "\n1. MMA."
+					+ "\n2. Puertas correderas."
+					+ "\n3. Número de asientos."
+					+ "\nSelecciona una opción: ");
+			opcion=Utilidades.leerInt(1,3);
+			switch (opcion) {
+			case 1:
+				System.out.println("Introduce la nueva MMA: ");
+				((Furgoneta) v).setMma(Utilidades.leerInt(0,3500));
+				break;
+			case 2:
+				System.out.println("¿Tiene puertas correderas?");
+				respuesta=Utilidades.introducirCadena("SI", "NO");
+				if(respuesta.equalsIgnoreCase("Si")) {
+					((Furgoneta) v).setPuertasCorrederas(true);
+				}else {
+					((Furgoneta) v).setPuertasCorrederas(false);
+				}
+				break;
+			case 3:
+				System.out.println("Introduce el nuevo número de asientos: ");
+				((Furgoneta) v).setnAsientos(Utilidades.leerInt(2,10));
+				break;
+			}
+		}
 	}
 }
