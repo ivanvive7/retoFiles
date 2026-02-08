@@ -27,7 +27,6 @@ public class ConcesionarioMain {
 
 		if (!fichT.exists()) {
 			fillFicheroTexto();
-			
 		}
 		
 		do {
