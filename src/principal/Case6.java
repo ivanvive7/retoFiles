@@ -26,7 +26,7 @@ public class Case6 {
 		Cliente cliente;
 		Vehiculo vehiculo = null;
 		
-		File fichAux = new File("vehiculosAuxiliar6.dat");
+		File fichVAux = new File("vehiculosAuxiliar6.dat");
 		
 		ObjectOutputStream oos;
 		MyObjectOutputStream moos;
@@ -54,7 +54,7 @@ public class Case6 {
 						System.out.println("Introduce el teléfono del cliente:");
 						telf = Utilidades.introducirCadena();
 						telf = ConcesionarioMain.validarTelf(telf);
-						vehiculo = reservaCompra(fichAux, fichV, vehiculo);
+						vehiculo = reservaCompra(fichVAux, fichV, vehiculo);
 						cliente = new Cliente(dni, nom, ape, telf);
 						cliente.getMapaVehiculos().put(vehiculo.getMatricula(), vehiculo);
 						oos.writeObject(cliente);
@@ -74,7 +74,7 @@ public class Case6 {
 						System.out.println("Introduce el teléfono del cliente:");
 						telf = Utilidades.introducirCadena();
 						telf = ConcesionarioMain.validarTelf(telf);
-						vehiculo = reservaCompra(fichAux, fichV, vehiculo);
+						vehiculo = reservaCompra(fichVAux, fichV, vehiculo);
 						cliente = new Cliente(dni, nom, ape, telf);
 						cliente.getMapaVehiculos().put(vehiculo.getMatricula(), vehiculo);
 						moos.writeObject(cliente);
@@ -95,9 +95,9 @@ public class Case6 {
 	}
 
 	@SuppressWarnings("unlikely-arg-type")
-	public static Vehiculo reservaCompra(File fichAux, File fichV, Vehiculo vehiculo) throws FileNotFoundException, IOException {
+	public static Vehiculo reservaCompra(File fichVAux, File fichV, Vehiculo vehiculo) throws FileNotFoundException, IOException {
 		String reservarComprar, matricula = "";
-		boolean valido, finArchivo = false, encontrado = false;
+		boolean valido, finArchivo = false, encontrado = false, respuesta = false;
 		
 		ObjectOutputStream oos;
 		ObjectInputStream ois;
@@ -105,7 +105,7 @@ public class Case6 {
 		System.out.println("¿Qué va a hacer el cliente?");
 		reservarComprar = Utilidades.introducirCadena("RESERVAR", "COMPRAR");
 		if (reservarComprar.equalsIgnoreCase("RESERVAR")) {
-			oos = new ObjectOutputStream(new FileOutputStream(fichAux));
+			oos = new ObjectOutputStream(new FileOutputStream(fichVAux));
 			ois = new ObjectInputStream(new FileInputStream(fichV));
 			do {
 				valido = false;
@@ -144,10 +144,10 @@ public class Case6 {
 			oos.close();
 			ois.close();
 			fichV.delete();
-			fichAux.renameTo(fichV);
+			fichVAux.renameTo(fichV);
 			System.out.println("Vehículo reservado con éxito.");
 		} else {
-			oos = new ObjectOutputStream(new FileOutputStream(fichAux));
+			oos = new ObjectOutputStream(new FileOutputStream(fichVAux));
 			ois = new ObjectInputStream(new FileInputStream(fichV));
 			do {
 				valido = false;
@@ -165,10 +165,19 @@ public class Case6 {
 						Vehiculo v = (Vehiculo) ois.readObject();
 						if (matricula.equals(v.getMatricula())) {
 							if (v.getEstado().equals("RESERVADO")) {
+								oos.writeObject(v);
 								System.out.println("Este vehículo ya ha sido reservado por otra perosna.");
 							} else {
-								v.setEstado(Estado.valueOf("VENDIDO"));
-								vehiculo = v;
+								ConcesionarioMain.leerFicheroTexto();
+								respuesta=Utilidades.introducirCadena("SI", "NO").equalsIgnoreCase("SI");
+								if (respuesta) {
+									v.setEstado(Estado.valueOf("VENDIDO"));
+									vehiculo = v;
+									System.out.println("Vehículo comprado con éxito.");
+								} else {
+									oos.writeObject(v);
+									System.out.println("Compra cancelada.");
+								}
 								encontrado = true;
 							}
 						} else {
@@ -187,8 +196,7 @@ public class Case6 {
 			oos.close();
 			ois.close();
 			fichV.delete();
-			fichAux.renameTo(fichV);
-			System.out.println("Vehículo comprado con éxito.");
+			fichVAux.renameTo(fichV);
 		}
 		return vehiculo;
 	}

@@ -105,7 +105,7 @@ public class Case1 {
 					System.out.println("Has elegido COCHE");
 
 					System.out.println("Número de puertas:");
-					puertas = Utilidades.leerInt();
+					puertas = Utilidades.leerInt(2,5);
 
 					System.out.println("¿Es automático? (SI/NO):");
 					automatico = Utilidades.introducirCadena("SI", "NO").equalsIgnoreCase("SI");
@@ -193,7 +193,6 @@ public class Case1 {
 				} while (!valida);
 
 				if (!ConcesionarioMain.buscarMatricula(fichV, matricula)) {
-					System.out.println("Matrícula válida");
 					System.out.println("Introduce la marca del vehiculo: ");
 					marca = Utilidades.introducirCadena();
 					System.out.println("Introduce el modelo del vehiculo: ");

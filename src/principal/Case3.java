@@ -16,9 +16,8 @@ public class Case3 {
 		ObjectInputStream ois = null;
 		boolean hayVehiculos = false;
 
-		  System.out.println("¿Que tipo de vehiculo quieres mostrar?: Moto - Coche - Furgoneta.");
-		    tipo = Utilidades.introducirCadena("Moto", "Coche", "Furgoneta");
-		    
+		  System.out.println("¿Que tipo de vehiculo quieres mostrar?");
+		    tipo = Utilidades.introducirCadena("Coche", "Moto", "Furgoneta");
 		    if (!fichV.exists()) {
 		        System.out.println("El fichero no existe.");
 		        return;
@@ -30,24 +29,26 @@ public class Case3 {
 		        while (!hayVehiculos) {
 		            try {
 		                Vehiculo vehiculo = (Vehiculo) ois.readObject();
-		                
-		                
+		            
 		                switch (tipo.toLowerCase()) {
 		                    case "moto":
 		                        if (vehiculo instanceof Moto) {
 		                            System.out.println(vehiculo);
+		                            vehiculo.visualizar();
 		                            hayVehiculos = true;
 		                        }
 		                        break;
 		                    case "coche":
 		                        if (vehiculo instanceof Coche) {
 		                            System.out.println(vehiculo);
+		                            vehiculo.visualizar();
 		                            hayVehiculos = true;
 		                        }
 		                        break;
 		                    case "furgoneta":
 		                        if (vehiculo instanceof Furgoneta) {
 		                            System.out.println(vehiculo);
+		                            vehiculo.visualizar();
 		                            hayVehiculos = true;
 		                        }
 		                        break;
