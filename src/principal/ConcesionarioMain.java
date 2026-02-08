@@ -19,17 +19,7 @@ public class ConcesionarioMain {
 		File fichT = new File("texto.dat");
 
 		int opcion;
-		
-		if (fichV.exists()) {
-			VerificadorVehiculos.verificarAlInicio(fichV);
-		}
-		
 
-		if (!fichT.exists()) {
-			fillFicheroTexto();
-			
-		}
-		
 		do {
 			opcion = menu();
 			switch (opcion) {
@@ -52,7 +42,7 @@ public class ConcesionarioMain {
 				Case6.introducirCliente(fichC, fichV);
 				break;
 			case 7:
-				Case7.introducirCliente(fichC, fichV);
+
 				break;
 			case 8:
 				Case8.listarClientes(fichC);
@@ -173,7 +163,7 @@ public class ConcesionarioMain {
 		return telf;
 	}
 
-	public static void fillFicheroTexto() {
+	public static void FillFicheroTexto() {
 		FileWriter fichero = null;
 		BufferedWriter bw = null;
 
@@ -197,11 +187,10 @@ public class ConcesionarioMain {
 			bw.newLine();
 			bw.write("7. Los datos del comprador se usaran solo para gestionar la compra y servicios asociados.");
 			bw.newLine();
-			bw.write("8. El concesionario garantiza la confidencialidad y el cumplimiento de la normativa de proteccion de datos.");
+			bw.write(
+					"8. El concesionario garantiza la confidencialidad y el cumplimiento de la normativa de proteccion de datos.");
 			bw.newLine();
 			bw.write("9. El comprador puede ejercer sus derechos legales mediante solicitud al concesionario.");
-			bw.newLine();
-			bw.write("¿ACEPTA LOS TERMINOS Y CONDICIONES? ");
 			bw.newLine();
 
 			bw.close();
