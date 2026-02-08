@@ -30,7 +30,6 @@ public class ConcesionarioMain {
 		}
 		
 
-
 		do {
 			opcion = menu();
 			switch (opcion) {
