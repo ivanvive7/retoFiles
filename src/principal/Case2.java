@@ -17,7 +17,7 @@ public class Case2 {
 				while(!finArchivo) {
 					try {
 						Vehiculo v=(Vehiculo) ois.readObject();
-						System.out.println(v);
+						v.visualizar();
 
 					}catch(EOFException v) {
 						finArchivo=true;
