@@ -24,6 +24,7 @@ public class Moto extends Vehiculo{
 		this.tipo = null;
 	}
 	//GETTERS Y SETTERS
+	
 	public int getCilindrada() {
 		return cilindrada;
 	}
@@ -32,12 +33,16 @@ public class Moto extends Vehiculo{
 		this.cilindrada = cilindrada;
 	}
 
-	public TipoMoto isDeportiva() {
+	public TipoMoto getTipo() {
 		return tipo;
 	}
 
-	public void setDeportiva(TipoMoto tipo) {
+	public void setTipo(TipoMoto tipo) {
 		this.tipo = tipo;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override
@@ -53,6 +58,7 @@ public class Moto extends Vehiculo{
 						+ "Cilindrada: "+cilindrada+"\n"
 						+ "Estilo: "+tipo);
 	}
+
 
 	@Override
 	public double calcularPrecioFinal() {
