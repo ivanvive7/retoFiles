@@ -105,7 +105,7 @@ public class Case1 {
 					System.out.println("Has elegido COCHE");
 
 					System.out.println("Número de puertas:");
-					puertas = Utilidades.leerInt();
+					puertas = Utilidades.leerInt(2,5);
 
 					System.out.println("¿Es automático? (SI/NO):");
 					automatico = Utilidades.introducirCadena("SI", "NO").equalsIgnoreCase("SI");
