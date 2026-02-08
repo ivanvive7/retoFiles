@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Cliente implements Serializable{
+public class Cliente implements Serializable, Comparable<Cliente>{
 
 	/**
 	 * 
@@ -79,6 +79,11 @@ public class Cliente implements Serializable{
 	public String toString() {
 		return "Cliente [dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono
 				+ ", vehículos=" + mapaVehiculos + "]";
+	}
+
+	@Override
+	public int compareTo(Cliente o) {
+		return this.nombre.compareToIgnoreCase(o.getNombre());
 	}
 	
 }
