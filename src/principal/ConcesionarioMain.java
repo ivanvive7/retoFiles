@@ -332,7 +332,6 @@ public class ConcesionarioMain {
 						switch (tipo.toLowerCase()) {
 						case "moto":
 							if (vehiculo instanceof Moto) {
-								System.out.println(vehiculo);
 								vehiculo.visualizar();
 								hayVehiculos = true;
 							}
@@ -340,7 +339,6 @@ public class ConcesionarioMain {
 
 						case "coche":
 							if (vehiculo instanceof Coche) {
-								System.out.println(vehiculo);
 								vehiculo.visualizar();
 								hayVehiculos = true;
 							}
@@ -348,7 +346,6 @@ public class ConcesionarioMain {
 
 						case "furgoneta":
 							if (vehiculo instanceof Furgoneta) {
-								System.out.println(vehiculo);
 								vehiculo.visualizar();
 								hayVehiculos = true;
 							}
