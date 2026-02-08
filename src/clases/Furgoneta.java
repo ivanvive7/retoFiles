@@ -63,7 +63,7 @@ public class Furgoneta extends Vehiculo{
 						+ "Fecha de alta: "+fechaAlta+"\n"
 						+ "Masa Máxima Autorizada: "+mma+"\n"
 						+ "Tipo de puertas: "+tipoPuerta()+"\n"
-						+ "Número de asientos: "+nAsientos);
+						+ "Número de asientos: "+nAsientos+"\n");
 	}
 	
 	public String tipoPuerta() {

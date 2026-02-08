@@ -56,7 +56,7 @@ public class Moto extends Vehiculo{
 						+ "Color: "+color+"\n"
 						+ "Fecha de alta: "+fechaAlta+"\n"
 						+ "Cilindrada: "+cilindrada+"\n"
-						+ "Estilo: "+tipo);
+						+ "Estilo: "+tipo+"\n");
 	}
 
 

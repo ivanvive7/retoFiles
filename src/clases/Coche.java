@@ -54,7 +54,7 @@ public class Coche extends Vehiculo{
 						+ "Fecha de alta: "+fechaAlta+"\n"
 						+ "Número de puertas: "+nPuertas+"\n"
 						+ "Caja: "+automatico_Manual()+"\n"
-						+ "Techo: "+techo());
+						+ "Techo: "+techo()+"\n");
 	}
 	
 	public String automatico_Manual() {
