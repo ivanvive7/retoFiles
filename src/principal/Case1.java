@@ -193,7 +193,6 @@ public class Case1 {
 				} while (!valida);
 
 				if (!ConcesionarioMain.buscarMatricula(fichV, matricula)) {
-					System.out.println("Matrícula válida");
 					System.out.println("Introduce la marca del vehiculo: ");
 					marca = Utilidades.introducirCadena();
 					System.out.println("Introduce el modelo del vehiculo: ");

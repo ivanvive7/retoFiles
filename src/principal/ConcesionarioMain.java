@@ -46,7 +46,7 @@ public class ConcesionarioMain {
 				Case6.introducirCliente(fichC, fichV);
 				break;
 			case 7:
-
+				Case7.introducirCliente(fichC, fichV);
 				break;
 			case 8:
 				Case8.listarClientes(fichC);
