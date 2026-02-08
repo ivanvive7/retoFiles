@@ -20,7 +20,7 @@ public class VerificadorVehiculos {
         
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichV));
 
-        System.out.println("\n AVISOS DE VEHÍCULOS CON 1 AÑO O MÁS:\n");
+        System.out.println("\n AVISOS DE VEHÍCULOS CON 1 AÑO O MÁS: \n");
         
         while (!finFichero) {
             try {
