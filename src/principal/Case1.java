@@ -90,7 +90,7 @@ public class Case1 {
 			System.out.println("Introduce el color del vehiculo: ");
 			color = Utilidades.introducirCadena();
 
-			System.out.println("Introduzca la fecha de alta del vehiculo: ");
+			System.out.println("Introduzca la fecha de alta del vehiculo (dd/mm/aaaa): ");
 			fechaAlta = Utilidades.leerFechaDMA();
 
 
@@ -115,8 +115,18 @@ public class Case1 {
 
 					System.out.println("Coche creado con:");
 					System.out.println("Puertas: " + puertas);
-					System.out.println("Automático: " + automatico);
-					System.out.println("Descapotable: " + descapotable);
+					System.out.print("Automático: ");
+					if(automatico) {
+						System.out.println("si");
+					}else {
+						System.out.println("no");
+					}
+					System.out.print("Descapotable: ");
+					if(descapotable) {
+						System.out.println("si");
+					}else {
+						System.out.println("no");
+					}
 					Vehiculo c = new Coche(matricula, marca, modelo, precioBase, estado, combustible, color, fechaAlta, puertas, automatico, descapotable);
 					oos.writeObject(c);
 					oos.close();
@@ -164,7 +174,12 @@ public class Case1 {
 
 					System.out.println("Furgoneta creada con:");
 					System.out.println("MMA: " + mma);
-					System.out.println("Puertas correderas: " + correderas);
+					System.out.print("Puertas correderas: ");
+					if(correderas) {
+						System.out.println("si");
+					}else {
+						System.out.println("no");
+					}
 					System.out.println("Asientos: " + asientos);
 					Vehiculo f = new Furgoneta(matricula, marca, modelo, precioBase, estado, combustible, color, fechaAlta, mma, correderas, asientos);
 					oos.writeObject(f);

@@ -19,9 +19,15 @@ public class ConcesionarioMain {
 		File fichT = new File("texto.dat");
 
 		int opcion;
+		
+		if (fichV.exists()) {
+			VerificadorVehiculos.verificarAlInicio(fichV);
+		}
+		
 
 		if (!fichT.exists()) {
 			fillFicheroTexto();
+			
 		}
 		
 		do {
