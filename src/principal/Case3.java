@@ -11,7 +11,7 @@ import utilidades.*;
 
 public class Case3 {
 	public static void ListarPorTipo(File fichV) {
-
+  
 		String tipo;
 		ObjectInputStream ois = null;
 		boolean hayVehiculos = false;
