@@ -46,7 +46,7 @@ public class ConcesionarioMain {
 				Case6.introducirCliente(fichC, fichV);
 				break;
 			case 7:
-
+				Case7.introducirCliente(fichC, fichV);
 				break;
 			case 8:
 				Case8.listarClientes(fichC);
@@ -194,6 +194,8 @@ public class ConcesionarioMain {
 			bw.write("8. El concesionario garantiza la confidencialidad y el cumplimiento de la normativa de proteccion de datos.");
 			bw.newLine();
 			bw.write("9. El comprador puede ejercer sus derechos legales mediante solicitud al concesionario.");
+			bw.newLine();
+			bw.write("¿ACEPTA LOS TERMINOS Y CONDICIONES? ");
 			bw.newLine();
 
 			bw.close();
