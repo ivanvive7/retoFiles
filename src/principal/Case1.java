@@ -61,18 +61,6 @@ public class Case1 {
 			modelo = Utilidades.introducirCadena();
 			System.out.println("Introduce el precio base del vehiculo: ");
 			precioBase = Utilidades.leerDouble();
-			System.out.println("Introduce el estado del vehiculo (DISPONIBLE | RESERVADO | VENDIDO): ");
-
-			while (!correctoEstado) {
-				try {
-					respuestaEstado = Utilidades.introducirCadena();
-					estado = Estado.valueOf(respuestaEstado.toUpperCase());
-					correctoEstado = true;
-				} catch (IllegalArgumentException e) {
-					System.out.println("El valor \"" + respuestaEstado + "\" no es válido. Inténtalo de nuevo.");
-					System.out.println("Debe ser: DISPONIBLE, RESERVADO o VENDIDO");
-				}
-			}
 
 			System.out.println("Introduce el combustible del vehiculo (GASOLINA | DIESEL | HIBRIDO | ELECTRICO): ");
 
@@ -127,7 +115,7 @@ public class Case1 {
 					}else {
 						System.out.println("no");
 					}
-					Vehiculo c = new Coche(matricula, marca, modelo, precioBase, estado, combustible, color, fechaAlta, puertas, automatico, descapotable);
+					Vehiculo c = new Coche(matricula, marca, modelo, precioBase, combustible, color, fechaAlta, puertas, automatico, descapotable);
 					oos.writeObject(c);
 					oos.close();
 					correctoSwitch  = true;
@@ -154,7 +142,7 @@ public class Case1 {
 					System.out.println("Moto creada con:");
 					System.out.println("Cilindrada: " + cilindrada);
 					System.out.println("Tipo: " + tipoMoto);
-					Vehiculo m = new Moto(matricula, marca, modelo, precioBase, estado, combustible, color, fechaAlta, cilindrada, tipoMoto);
+					Vehiculo m = new Moto(matricula, marca, modelo, precioBase, combustible, color, fechaAlta, cilindrada, tipoMoto);
 					oos.writeObject(m);
 					oos.close();
 					correctoSwitch  = true;
@@ -181,7 +169,7 @@ public class Case1 {
 						System.out.println("no");
 					}
 					System.out.println("Asientos: " + asientos);
-					Vehiculo f = new Furgoneta(matricula, marca, modelo, precioBase, estado, combustible, color, fechaAlta, mma, correderas, asientos);
+					Vehiculo f = new Furgoneta(matricula, marca, modelo, precioBase, combustible, color, fechaAlta, mma, correderas, asientos);
 					oos.writeObject(f);
 					oos.close();
 					correctoSwitch  = true;
@@ -214,18 +202,6 @@ public class Case1 {
 					modelo = Utilidades.introducirCadena();
 					System.out.println("Introduce el precio base del vehiculo: ");
 					precioBase = Utilidades.leerDouble();
-					System.out.println("Introduce el estado del vehiculo (DISPONIBLE | RESERVADO | VENDIDO): ");
-
-					while (!correctoEstado) {
-						try {
-							respuestaEstado = Utilidades.introducirCadena();
-							estado = Estado.valueOf(respuestaEstado.toUpperCase());
-							correctoEstado = true;
-						} catch (IllegalArgumentException e) {
-							System.out.println("El valor \"" + respuestaEstado + "\" no es válido. Inténtalo de nuevo.");
-							System.out.println("Debe ser: DISPONIBLE, RESERVADO o VENDIDO");
-						}
-					}
 
 					System.out.println("Introduce el combustible del vehiculo (GASOLINA | DIESEL | HIBRIDO | ELECTRICO): ");
 
@@ -280,7 +256,7 @@ public class Case1 {
 							}else {
 								System.out.println("no");
 							}
-							Vehiculo c = new Coche(matricula, marca, modelo, precioBase, estado, combustible, color, fechaAlta, puertas, automatico, descapotable);
+							Vehiculo c = new Coche(matricula, marca, modelo, precioBase, combustible, color, fechaAlta, puertas, automatico, descapotable);
 							moos.writeObject(c);
 							moos.close();
 							correctoSwitch = true;
@@ -308,7 +284,7 @@ public class Case1 {
 							System.out.println("Moto creada con:");
 							System.out.println("Cilindrada: " + cilindrada);
 							System.out.println("Tipo: " + tipoMoto);
-							Vehiculo m = new Moto(matricula, marca, modelo, precioBase, estado, combustible, color, fechaAlta, cilindrada, tipoMoto);
+							Vehiculo m = new Moto(matricula, marca, modelo, precioBase, combustible, color, fechaAlta, cilindrada, tipoMoto);
 							moos.writeObject(m);
 							moos.close();
 							correctoSwitch  = true;
@@ -336,7 +312,7 @@ public class Case1 {
 								System.out.println("no");
 							}
 							System.out.println("Asientos: " + asientos);
-							Vehiculo f = new Furgoneta(matricula, marca, modelo, precioBase, estado, combustible, color, fechaAlta, mma, correderas, asientos);
+							Vehiculo f = new Furgoneta(matricula, marca, modelo, precioBase, combustible, color, fechaAlta, mma, correderas, asientos);
 							moos.writeObject(f);
 							moos.close();
 							correctoSwitch  = true;

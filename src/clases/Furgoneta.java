@@ -13,8 +13,8 @@ public class Furgoneta extends Vehiculo{
 	private boolean puertasCorrederas;
 	private int nAsientos;
 	//CONSTRUCTORES
-	public Furgoneta(String matricula, String marca, String modelo, double precioBase, Estado estado, Combustible combustible, String color, LocalDate fechaAlta, int mma, boolean puertasCorrederas, int nAsientos) {
-		super(matricula, marca, modelo, precioBase, estado, combustible, color, fechaAlta);
+	public Furgoneta(String matricula, String marca, String modelo, double precioBase, Combustible combustible, String color, LocalDate fechaAlta, int mma, boolean puertasCorrederas, int nAsientos) {
+		super(matricula, marca, modelo, precioBase, combustible, color, fechaAlta);
 		this.mma = mma;
 		this.puertasCorrederas = puertasCorrederas;
 		this.nAsientos = nAsientos;

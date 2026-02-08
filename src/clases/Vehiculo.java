@@ -21,12 +21,12 @@ public abstract class Vehiculo implements Serializable{
 	protected LocalDate fechaAlta;
 	
 	//CONSTRUCTORES
-	public Vehiculo(String matricula, String marca, String modelo, double precioBase, Estado estado, Combustible combustible, String color, LocalDate fechaAlta) {
+	public Vehiculo(String matricula, String marca, String modelo, double precioBase, Combustible combustible, String color, LocalDate fechaAlta) {
 		this.matricula = matricula;
 		this.marca = marca;
 		this.modelo = modelo;
 		this.precioBase = precioBase;
-		this.estado = estado;
+		this.estado = Estado.DISPONIBLE;
 		this.combustible = combustible;
 		this.color = color;
 		this.fechaAlta = fechaAlta;

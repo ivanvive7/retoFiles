@@ -10,8 +10,8 @@ public class Coche extends Vehiculo{
 	private boolean automatico;
 	private boolean descapotable;
 	//CONSTRUCTORES
-	public Coche(String matricula, String marca, String modelo, double precioBase, Estado estado, Combustible combustible, String color, LocalDate fechaAlta, int nPuertas, boolean automatico, boolean descapotable) {
-		super(matricula, marca, modelo, precioBase, estado, combustible, color, fechaAlta);
+	public Coche(String matricula, String marca, String modelo, double precioBase, Combustible combustible, String color, LocalDate fechaAlta, int nPuertas, boolean automatico, boolean descapotable) {
+		super(matricula, marca, modelo, precioBase, combustible, color, fechaAlta);
 		this.nPuertas = nPuertas;
 		this.automatico = automatico;
 		this.descapotable = descapotable;

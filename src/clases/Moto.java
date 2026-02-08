@@ -12,8 +12,8 @@ public class Moto extends Vehiculo{
 	private int cilindrada;
 	private TipoMoto tipo;
 	//CONSTRUCTORES
-	public Moto(String matricula, String marca, String modelo, double precioBase, Estado estado, Combustible combustible, String color, LocalDate fechaAlta, int cilindrada, TipoMoto tipo) {
-		super(matricula, marca, modelo, precioBase, estado, combustible, color, fechaAlta);
+	public Moto(String matricula, String marca, String modelo, double precioBase, Combustible combustible, String color, LocalDate fechaAlta, int cilindrada, TipoMoto tipo) {
+		super(matricula, marca, modelo, precioBase, combustible, color, fechaAlta);
 		this.cilindrada = cilindrada;
 		this.tipo = tipo;
 	}
