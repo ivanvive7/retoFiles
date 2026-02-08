@@ -20,7 +20,7 @@ public class ConcesionarioMain {
 		File fichV = new File("vehiculos.dat");
 		File fichC = new File("clientes.dat");
 		File fichT = new File("texto.dat");
-
+ 
 		int opcion;
 
 		if (fichV.exists()) {
