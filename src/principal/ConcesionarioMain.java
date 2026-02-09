@@ -1174,7 +1174,6 @@ public class ConcesionarioMain {
 						} else {
 							if (reservarComprar.equals("COMPRAR")) {
 								ConcesionarioMain.leerFicheroTexto();
-								System.out.println("¿Confirmar compra?");
 								respuesta = Utilidades.introducirCadena("SI", "NO").equalsIgnoreCase("SI");
 
 								if (respuesta) {
