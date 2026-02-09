@@ -598,10 +598,16 @@ public class ConcesionarioMain {
 							do {
 								encontrado = true;
 								finArchivo = false;
-								System.out.println(
-										"¿Qué quieres modificar?" + "\n1. Matricula." + "\n2. Marca." + "\n3. Modelo."
-												+ "\n4. Precio base." + "\n5. Combustible." + "\n6. Fecha de alta."
-												+ "\n7. Color." + "\n8. Otro." + "\nSelecciona una opción: ");
+								System.out.println("¿Qué quieres modificar?" 
+								+ "\n1. Matricula." 
+								+ "\n2. Marca." 
+								+ "\n3. Modelo."
+								+ "\n4. Precio base." 
+								+ "\n5. Combustible." 
+								+ "\n6. Fecha de alta."	
+								+ "\n7. Color." 
+								+ "\n8. Otro." 
+								+ "\nSelecciona una opción: ");
 								opcion = Utilidades.leerInt(1, 8);
 
 								switch (opcion) {
@@ -610,12 +616,11 @@ public class ConcesionarioMain {
 									do {
 										System.out.println("Introduce la nueva matrícula: ");
 										matricula = Utilidades.introducirCadena();
-										if (ConcesionarioMain.buscarMatricula(fichV, matricula)) {
+										if (buscarMatricula(fichV, matricula)) {
 											matriculaRepe = true;
 											System.out.println("Ya hay un vehículo registrado con esa matrícula.");
 										}
-										// esto hay que cambiarlo cuando lo pasemos al main
-									} while (!ConcesionarioMain.validarMatricula(matricula) || matriculaRepe);
+									} while (!validarMatricula(matricula) || matriculaRepe);
 									v.setMatricula(matricula);
 									break;
 								case 2:
