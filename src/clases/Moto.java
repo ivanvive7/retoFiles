@@ -47,7 +47,8 @@ public class Moto extends Vehiculo{
 
 	@Override
 	public void visualizar() {
-		System.out.println("Matrícula de la moto: "+matricula+"\n"
+		System.out.println("────────── MOTO ──────────\n"
+						+ "Matrícula de la moto: "+matricula+"\n"
 						+ "Marca: "+marca+"\n"
 						+ "Modelo: "+modelo+"\n"
 						+ "Precio final: "+calcularPrecioFinal()+"\n"

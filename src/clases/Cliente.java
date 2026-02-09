@@ -74,11 +74,19 @@ public class Cliente implements Serializable, Comparable<Cliente>{
 	public void setMapaVehiculos(Map<String, Vehiculo> mapaVehiculos) {
 		this.mapaVehiculos = mapaVehiculos;
 	}
-
-	@Override
-	public String toString() {
-		return "Cliente [dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono
-				+ ", vehículos=" + mapaVehiculos + "]";
+	
+	
+	public void visualizar() {
+		System.out.println("────────── CLIENTE ──────────\n"
+				+ "DNI :" + dni + "\n"
+				+ "Nombre : " + nombre + "\n"
+				+ "Apellido : " + apellido + "\n"
+				+ "Teléfono : " + telefono + "\n"
+				+ "Vehículos :"); 
+		for (Vehiculo v : mapaVehiculos.values()) {
+            System.out.println("  - "+ v);
+        }
+		System.out.println("─────────────────────────────\n");
 	}
 
 	@Override

@@ -117,7 +117,7 @@ public class Case7 {
 										if (c.getDni().equals(dni)) {
 											for (Vehiculo v: c.getMapaVehiculos().values()) {
 												if (matricula.equals(v.getMatricula())) {
-													if (v.getEstado().equals("RESERVADO")) {
+													if (v.getEstado() == Estado.RESERVADO) {
 														ConcesionarioMain.leerFicheroTexto();
 														respuesta=Utilidades.introducirCadena("SI", "NO").equalsIgnoreCase("SI");
 														if (respuesta) {
@@ -133,6 +133,7 @@ public class Case7 {
 												}	
 											}
 										}
+										oos.reset();
 										oos.writeObject(c);
 									} catch (EOFException e) {
 										finArchivo = true;

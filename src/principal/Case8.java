@@ -20,7 +20,7 @@ public class Case8 {
 				while(!finArchivo) {
 					try {
 						Cliente c=(Cliente) ois.readObject();
-						System.out.println(c);
+						c.visualizar();
 						}catch(EOFException v) {
 							finArchivo=true;
 					}
