@@ -3,7 +3,6 @@ package principal;
 import java.io.*;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.HashMap;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 
@@ -79,7 +78,7 @@ public class ConcesionarioMain {
 
 		ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichV));
 
-		System.out.println("\n AVISOS DE VEHÍCULOS CON 1 AÑO O MÁS: \n");
+		System.out.println("\nAVISOS DE VEHÍCULOS CON 1 AÑO O MÁS DE ANTIGÜEDAD: \n");
 
 		while (!finFichero) {
 			try {
@@ -109,6 +108,8 @@ public class ConcesionarioMain {
 		if (hayAvisos) {
 			System.out.println("Presiona ENTER para continuar...");
 			presionar = Utilidades.introducirCadena();
+		}else {
+			System.out.println("No hay vehículos con 1 año o más de antigüedad.");
 		}
 	}
 	
@@ -135,12 +136,11 @@ public class ConcesionarioMain {
 	private static void introducirVehiculo(File fichV) throws IOException {
 		ObjectOutputStream oos = null;
 		MyObjectOutputStream moos = null;
-		boolean valida = false, correctoEstado = false, correctoCombustible = false, correctoSwitch = false,
+		boolean valida = false, correctoCombustible = false, correctoSwitch = false,
 				correctoTipoMoto = false;
-		String matricula = "", marca = "", modelo = "", respuestaEstado = "", respuestaCombustible = "", color = "",
+		String matricula = "", marca = "", modelo = "", respuestaCombustible = "", color = "",
 				elegir = "", respuestaTipoMoto = "";
 		double precioBase = 0.0;
-		Estado estado = null;
 		Combustible combustible = null;
 		LocalDate fechaAlta = null;
 
@@ -1215,7 +1215,7 @@ public class ConcesionarioMain {
 	
 	
 	public static void meterClientesEnTreeMap(File fichC, TreeMap<String, Cliente> clientesOrdenados) {
-		boolean finArchivo=false, encontrado=false;
+		boolean finArchivo=false;
 		ObjectInputStream ois=null;
 
 		try {
