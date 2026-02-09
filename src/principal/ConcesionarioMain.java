@@ -1425,6 +1425,8 @@ public class ConcesionarioMain {
 			bw.newLine();
 			bw.write("9. El comprador puede ejercer sus derechos legales mediante solicitud al concesionario.");
 			bw.newLine();
+			bw.write("¿ACEPTA LOS TERMINOS DE PRIVACIDAD?");
+			bw.newLine();
 
 			bw.close();
 			fichero.close();
