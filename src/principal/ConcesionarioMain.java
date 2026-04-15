@@ -12,8 +12,7 @@ import utilidades.*;
 
 public class ConcesionarioMain {
 
-	public static void main(String[] args) throws MatriculaException, IOException {
-		// TODO Auto-generated method stub
+	public static void main(String[] args) {
 
 		File fichAux = new File("vehiculosAuxiliar.dat");
 		File fichV = new File("vehiculos.dat");
@@ -22,94 +21,101 @@ public class ConcesionarioMain {
 
 		int opcion;
 
-		if (fichV.exists()) {
-			verificarAlInicio(fichV);
-		}
-
-		if (!fichT.exists()) {
-			FillFicheroTexto();
-		}
-
-		do {
-			opcion = menu();
-			switch (opcion) {
-			case 1:
-				introducirVehiculo(fichV);
-				break;
-			case 2:
-				listarVehiculos(fichV);
-				break;
-			case 3:
-				listarPorTipo(fichV);
-				break; 
-			case 4:
-				modificarVehiculo(fichV, fichAux);
-				break;
-			case 5:
-				eliminarVehiculoPorMatricula(fichV, fichAux);			
-				break;
-			case 6:
-				introducirCliente(fichC, fichV);
-				break;
-			case 7:
-				compraReservaCliente(fichC, fichV);
-				break;
-			case 8:
-				listarClientesOrdenados(fichC);
-				break;
-			case 9:
-				buscarClienteDNI(fichC);
-				break;
-			case 10:
-				System.out.println("Hasta la próxima.");
-				break;
+		try {
+			if (fichV.exists()) {
+				verificarAlInicio(fichV);
 			}
-		} while (opcion != 10);
+
+			if (!fichT.exists()) {
+				FillFicheroTexto();
+			}
+
+			do {
+				opcion = menu();
+				switch (opcion) {
+				case 1:
+					introducirVehiculo(fichV);
+					break;
+				case 2:
+					listarVehiculos(fichV);
+					break;
+				case 3:
+					listarPorTipo(fichV);
+					break; 
+				case 4:
+					modificarVehiculo(fichV, fichAux);
+					break;
+				case 5:
+					eliminarVehiculoPorMatricula(fichV, fichAux);			
+					break;
+				case 6:
+					introducirCliente(fichC, fichV);
+					break;
+				case 7:
+					compraReservaCliente(fichC, fichV);
+					break;
+				case 8:
+					listarClientesOrdenados(fichC);
+					break;
+				case 9:
+					buscarClienteDNI(fichC);
+					break;
+				case 10:
+					System.out.println("Hasta la próxima.");
+					break;
+				}
+			} while (opcion != 10);
+		} catch (Exception e) {
+			System.err.println("Error inesperado en la aplicación: " + e.getMessage());
+		}
 
 	}
 	
 	
 	
-	public static void verificarAlInicio(File fichV) throws IOException {
+	public static void verificarAlInicio(File fichV) {
 		LocalDate hoy = LocalDate.now();
 		boolean hayAvisos = false;
 		boolean finFichero = false;
-		String presionar = "";
 
-		ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichV));
+		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichV))) {
 
-		System.out.println("\nAVISOS DE VEHÍCULOS CON 1 AÑO O MÁS DE ANTIGÜEDAD: \n");
+			System.out.println("\nAVISOS DE VEHÍCULOS CON 1 AÑO O MÁS DE ANTIGÜEDAD: \n");
 
-		while (!finFichero) {
-			try {
-				Vehiculo v = (Vehiculo) ois.readObject();
-				LocalDate fechaAlta = v.getFechaAlta();
-				Period periodo = Period.between(fechaAlta, hoy);
+			while (!finFichero) {
+				try {
+					Vehiculo v = (Vehiculo) ois.readObject();
+					LocalDate fechaAlta = v.getFechaAlta();
+					Period periodo = Period.between(fechaAlta, hoy);
 
-				if (periodo.getYears() >= 1) {
-					hayAvisos = true;
+					if (periodo.getYears() >= 1) {
+						hayAvisos = true;
 
-					System.out.println("Matrícula: " + v.getMatricula());
-					System.out.println("Marca: " + v.getMarca());
-					System.out.println("Modelo: " + v.getModelo());
-					System.out.println("Tiempo en stock: " + periodo.getYears() + " año(s) y " + periodo.getMonths()
-					+ " mes(es) \n");
+						System.out.println("Matrícula: " + v.getMatricula());
+						System.out.println("Marca: " + v.getMarca());
+						System.out.println("Modelo: " + v.getModelo());
+						System.out.println("Tiempo en stock: " + periodo.getYears() + " año(s) y " + periodo.getMonths()
+						+ " mes(es) \n");
+					}
+
+				} catch (EOFException e) {
+					finFichero = true;
+				} catch (ClassNotFoundException e) {
+					System.err.println("Error al leer vehículo: clase no encontrada.");
 				}
-
-			} catch (EOFException e) {
-				finFichero = true;
-			} catch (ClassNotFoundException e) {
-				System.err.println("Error al leer vehículo");
 			}
-		}
 
-		ois.close();
+			if (hayAvisos) {
+				System.out.println("Presiona ENTER para continuar...");
+				Utilidades.introducirCadena();
+			} else {
+				System.out.println("No hay vehículos con 1 año o más de antigüedad.");
+			}
 
-		if (hayAvisos) {
-			System.out.println("Presiona ENTER para continuar...");
-			presionar = Utilidades.introducirCadena();
-		}else {
-			System.out.println("No hay vehículos con 1 año o más de antigüedad.");
+		} catch (FileNotFoundException e) {
+			System.err.println("Error: no se pudo abrir el fichero de vehículos.");
+		} catch (IOException e) {
+			System.err.println("Error al leer el fichero de vehículos: " + e.getMessage());
 		}
 	}
 	
@@ -484,8 +490,6 @@ public class ConcesionarioMain {
 					}
 				}
 
-				ois.close();
-
 				if (!hayVehiculos) {
 					System.out.println("No hay vehículos registrados.");
 				}
@@ -496,6 +500,12 @@ public class ConcesionarioMain {
 				System.out.println("La clase Vehículo no es válida.");
 			} catch (IOException e) {
 				System.out.println("Error leyendo el fichero.");
+			} finally {
+				try {
+					if (ois != null) ois.close();
+				} catch (IOException e) {
+					System.err.println("Error cerrando el fichero de vehículos.");
+				}
 			}
 		} else {
 			System.out.println("No hay vehículos registrados.");
@@ -574,12 +584,12 @@ public class ConcesionarioMain {
 	}
 	
 
-	private static File modificarVehiculo(File fichV, File fichAux) throws MatriculaException {
+	private static File modificarVehiculo(File fichV, File fichAux) {
 		int opcion;
 		String matricula, marca, modelo, combustible = "", color, respuesta;
 		double precioBase;
 		LocalDate fechaAlta;
-		ObjectOutputStream oos;
+		ObjectOutputStream oos = null;
 		ObjectInputStream ois = null;
 		boolean finArchivo = false, encontrado = false, correctoCombustible = false, matriculaRepe = false;
 
@@ -611,18 +621,26 @@ public class ConcesionarioMain {
 								opcion = Utilidades.leerInt(1, 8);
 
 								switch (opcion) {
-								case 1:
-									matriculaRepe = false;
+								case 1: {
+									boolean repetir;
 									do {
+										repetir = false;
 										System.out.println("Introduce la nueva matrícula: ");
 										matricula = Utilidades.introducirCadena();
-										if (buscarMatricula(fichV, matricula)) {
-											matriculaRepe = true;
-											System.out.println("Ya hay un vehículo registrado con esa matrícula.");
+										try {
+											ConcesionarioMain.validarMatricula(matricula);
+											if (buscarMatricula(fichV, matricula)) {
+												repetir = true;
+												System.out.println("Ya hay un vehículo registrado con esa matrícula.");
+											}
+										} catch (MatriculaException e) {
+											System.out.println(e.getMessage());
+											repetir = true;
 										}
-									} while (!validarMatricula(matricula) || matriculaRepe);
+									} while (repetir);
 									v.setMatricula(matricula);
 									break;
+								}
 								case 2:
 									System.out.println("Introduce la nueva marca: ");
 									marca = Utilidades.introducirCadena();
@@ -682,12 +700,13 @@ public class ConcesionarioMain {
 					}
 				}
 
-				ois.close();
-				oos.close();
-
 				if (encontrado) {
-					fichV.delete();
-					fichAux.renameTo(fichV);
+					if (!fichV.delete()) {
+						System.err.println("Advertencia: no se pudo eliminar el fichero original.");
+					}
+					if (!fichAux.renameTo(fichV)) {
+						System.err.println("Advertencia: no se pudo renombrar el fichero auxiliar.");
+					}
 				} else {
 					fichAux.delete();
 					System.out.println("No hay ningún vehículo registrado con esa matrícula.");
@@ -699,6 +718,17 @@ public class ConcesionarioMain {
 				System.out.println("La clase Vehiculo no es válida.");
 			} catch (IOException e) {
 				System.out.println("Error leyendo el fichero.");
+			} finally {
+				try {
+					if (ois != null) ois.close();
+				} catch (IOException e) {
+					System.err.println("Error cerrando el fichero de lectura.");
+				}
+				try {
+					if (oos != null) oos.close();
+				} catch (IOException e) {
+					System.err.println("Error cerrando el fichero de escritura.");
+				}
 			}
 		} else {
 			System.out.println("El fichero no existe.");
@@ -823,12 +853,13 @@ public class ConcesionarioMain {
 					}
 				}
 
-				ois.close();
-				oos.close();
-
 				if (encontrado) {
-					fichV.delete();
-					fichAux.renameTo(fichV);
+					if (!fichV.delete()) {
+						System.err.println("Advertencia: no se pudo eliminar el fichero original.");
+					}
+					if (!fichAux.renameTo(fichV)) {
+						System.err.println("Advertencia: no se pudo renombrar el fichero auxiliar.");
+					}
 					System.out.println("Vehículo eliminado correctamente.");
 				} else {
 					fichAux.delete(); 
@@ -841,6 +872,17 @@ public class ConcesionarioMain {
 				System.out.println("La clase Vehiculo no es válida.");
 			} catch (IOException e) {
 				System.out.println("Error leyendo/escribiendo el fichero: " + e.getMessage());
+			} finally {
+				try {
+					if (ois != null) ois.close();
+				} catch (IOException e) {
+					System.err.println("Error cerrando el fichero de lectura.");
+				}
+				try {
+					if (oos != null) oos.close();
+				} catch (IOException e) {
+					System.err.println("Error cerrando el fichero de escritura.");
+				}
 			}
 		} else {
 			System.out.println("El fichero no existe.");
@@ -967,7 +1009,7 @@ public class ConcesionarioMain {
 									} catch (EOFException e) {
 										finArchivo = true;
 									} catch (ClassNotFoundException e) {
-										e.printStackTrace();
+										System.err.println("Error al leer vehículo: clase no encontrada.");
 									}
 								}
 								finArchivo=false;
@@ -1027,7 +1069,7 @@ public class ConcesionarioMain {
 									} catch (EOFException e) {
 										finArchivo = true;
 									} catch (ClassNotFoundException e) {
-										e.printStackTrace();
+										System.err.println("Error al leer cliente: clase no encontrada.");
 									}
 								}
 								finArchivo=false;
@@ -1047,7 +1089,7 @@ public class ConcesionarioMain {
 										} catch (EOFException e) {
 											finArchivo = true;
 										} catch (ClassNotFoundException e) {
-											e.printStackTrace();
+											System.err.println("Error al leer vehículo: clase no encontrada.");
 										}
 									}
 									finArchivo=false;
@@ -1078,7 +1120,7 @@ public class ConcesionarioMain {
 										} catch (EOFException e) {
 											finArchivo = true;
 										} catch (ClassNotFoundException e) {
-											e.printStackTrace();
+											System.err.println("Error al leer vehículo: clase no encontrada.");
 										}
 									}
 									finArchivo=false;
@@ -1099,7 +1141,7 @@ public class ConcesionarioMain {
 											} catch (EOFException e) {
 												finArchivo = true;
 											} catch (ClassNotFoundException e) {
-												e.printStackTrace();
+												System.err.println("Error al leer cliente: clase no encontrada.");
 											}
 										}
 										finArchivo=false;
@@ -1233,13 +1275,18 @@ public class ConcesionarioMain {
 					finArchivo=true;
 				}
 			}
-			ois.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.err.println("No se encontró el fichero de clientes.");
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.err.println("Error leyendo el fichero de clientes: " + e.getMessage());
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			System.err.println("Error al leer cliente: clase no encontrada.");
+		} finally {
+			try {
+				if (ois != null) ois.close();
+			} catch (IOException e) {
+				System.err.println("Error cerrando el fichero de clientes.");
+			}
 		}
 	}
 	
@@ -1284,13 +1331,18 @@ public class ConcesionarioMain {
 						finArchivo = true;
 					}
 				}
-				ois.close();
 			} catch (FileNotFoundException e) {
 				System.out.println("No se encontró el fichero.");
 			} catch (ClassNotFoundException e) {
 				System.out.println("La clase Cliente no es válida.");
 			} catch (IOException e) {
 				System.out.println("Error leyendo el fichero.");
+			} finally {
+				try {
+					if (ois != null) ois.close();
+				} catch (IOException e) {
+					System.err.println("Error cerrando el fichero de clientes.");
+				}
 			}
 		} else {
 			System.out.println("El fichero no existe.");
@@ -1315,13 +1367,18 @@ public class ConcesionarioMain {
 						finArchivo = true;
 					}
 				}
-				ois.close();
 			} catch (FileNotFoundException e) {
 				System.out.println("No se encontró el fichero.");
 			} catch (ClassNotFoundException e) {
 				System.out.println("La clase Vehiculo no es válida.");
 			} catch (IOException e) {
 				System.out.println("Error leyendo el fichero.");
+			} finally {
+				try {
+					if (ois != null) ois.close();
+				} catch (IOException e) {
+					System.err.println("Error cerrando el fichero de vehículos.");
+				}
 			}
 		}
 		return encontrado;
@@ -1345,13 +1402,18 @@ public class ConcesionarioMain {
 						finArchivo = true;
 					}
 				}
-				ois.close();
 			} catch (FileNotFoundException e) {
 				System.out.println("No se encontró el fichero.");
 			} catch (ClassNotFoundException e) {
 				System.out.println("La clase Cliente no es válida.");
 			} catch (IOException e) {
 				System.out.println("Error leyendo el fichero.");
+			} finally {
+				try {
+					if (ois != null) ois.close();
+				} catch (IOException e) {
+					System.err.println("Error cerrando el fichero de clientes.");
+				}
 			}
 		}
 		return encontrado;
@@ -1397,12 +1459,8 @@ public class ConcesionarioMain {
 	
 
 	public static void FillFicheroTexto() {
-		FileWriter fichero = null;
-		BufferedWriter bw = null;
-
-		try {
-			fichero = new FileWriter("Condiciones_Privacidad.txt");
-			bw = new BufferedWriter(fichero);
+		try (FileWriter fichero = new FileWriter("Condiciones_Privacidad.txt");
+			 BufferedWriter bw = new BufferedWriter(fichero)) {
 
 			bw.write("CONDICIONES DE COMPRA Y PRIVACIDAD");
 			bw.newLine();
@@ -1427,22 +1485,16 @@ public class ConcesionarioMain {
 			bw.write("¿ACEPTA LOS TERMINOS DE PRIVACIDAD?");
 			bw.newLine();
 
-			bw.close();
-			fichero.close();
-
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.err.println("Error al escribir el fichero de condiciones: " + e.getMessage());
 		}
 	}
 
-	public static void leerFicheroTexto() throws IOException {
+	public static void leerFicheroTexto() {
 		File archivo = new File("Condiciones_Privacidad.txt");
-		FileReader fr = null;
-		BufferedReader br = null;
 
-		try {
-			fr = new FileReader(archivo);
-			br = new BufferedReader(fr);
+		try (FileReader fr = new FileReader(archivo);
+			 BufferedReader br = new BufferedReader(fr)) {
 
 			String linea;
 
@@ -1450,12 +1502,10 @@ public class ConcesionarioMain {
 				System.out.println(linea);
 			}
 
-			br.close();
-			fr.close();
-
 		} catch (FileNotFoundException e) {
-			System.out.println("El archivo no existe o no se encuentra en la ruta indicada.");
-			e.printStackTrace();
+			System.err.println("El archivo de condiciones no existe o no se encuentra en la ruta indicada.");
+		} catch (IOException e) {
+			System.err.println("Error al leer el archivo de condiciones: " + e.getMessage());
 		}
 	}
 }
